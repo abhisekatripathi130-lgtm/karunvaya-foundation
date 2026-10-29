@@ -11,8 +11,9 @@ function kpJson(obj,status=200){
   return new Response(JSON.stringify(obj),{status,headers:{"content-type":"application/json; charset=utf-8","cache-control":"no-store","x-content-type-options":"nosniff","referrer-policy":"no-referrer"}});
 }
 function kpEnabled(env){
-  return env.RZP_TEST_ENABLED==="true" && typeof env.RZP_KEY_ID==="string" &&
-    env.RZP_KEY_ID.startsWith("rzp_test_") && Boolean(env.RZP_KEY_SECRET);
+  return String(env.RZP_TEST_ENABLED||"").trim().toLowerCase()==="true" &&
+    typeof env.RZP_KEY_ID==="string" && env.RZP_KEY_ID.trim().startsWith("rzp_test_") &&
+    typeof env.RZP_KEY_SECRET==="string" && env.RZP_KEY_SECRET.trim().length>0;
 }
 function kpSameOrigin(request){
   const origin=request.headers.get("Origin");
@@ -36,7 +37,7 @@ async function kpSignature(secret,message){
 }
 async function kpRazorpay(env,path,method="GET",body){
   const response=await fetch("https://api.razorpay.com/v1/"+path,{
-    method,headers:{"Authorization":"Basic "+btoa(env.RZP_KEY_ID+":"+env.RZP_KEY_SECRET),
+    method,headers:{"Authorization":"Basic "+btoa(env.RZP_KEY_ID.trim()+":"+env.RZP_KEY_SECRET.trim()),
       ...(body?{"Content-Type":"application/json"}:{})},
     body:body?JSON.stringify(body):undefined,
     cache:"no-store",
@@ -49,7 +50,8 @@ async function kpHandlePaymentApi(request,env){
   const path=new URL(request.url).pathname;
   if(path==="/api/payments/config"&&request.method==="GET"){
     return kpJson({enabled:kpEnabled(env),environment:"test",provider:"razorpay",
-      message:kpEnabled(env)?"Gateway test mode configured. No real money moves.":"Gateway test account is not connected yet."});
+      message:kpEnabled(env)?"Gateway test mode configured. No real money moves.":"Test configuration requires attention.",
+      setupChecks:{testModeEnabled:String(env.RZP_TEST_ENABLED||"").trim().toLowerCase()==="true",testKeyRecognized:typeof env.RZP_KEY_ID==="string"&&env.RZP_KEY_ID.trim().startsWith("rzp_test_"),secretConfigured:typeof env.RZP_KEY_SECRET==="string"&&env.RZP_KEY_SECRET.trim().length>0}}});
   }
   if(path!=="/api/payments/order"&&path!=="/api/payments/verify")return kpJson({error:"Not found"},404);
   if(request.method!=="POST")return kpJson({error:"Method not allowed"},405);
@@ -72,7 +74,7 @@ async function kpHandlePaymentApi(request,env){
       if(!order?.id||order.amount!==amount*100||order.currency!=="INR"){
         return kpJson({error:"Gateway did not return a valid order."},502);
       }
-      return kpJson({orderId:order.id,keyId:env.RZP_KEY_ID,amount:order.amount,
+      return kpJson({orderId:order.id,keyId:env.RZP_KEY_ID.trim(),amount:order.amount,
         currency:"INR",mode:"test"});
     }catch{return kpJson({error:"Could not create a gateway test order. Try again later."},502)}
   }
@@ -82,7 +84,7 @@ async function kpHandlePaymentApi(request,env){
      typeof sig!=="string"||!/^[a-f0-9]{64}$/i.test(sig)){
     return kpJson({verified:false,error:"Invalid verification response."},400);
   }
-  const signed=await kpSignature(env.RZP_KEY_SECRET,id+"|"+pid);
+  const signed=await kpSignature(env.RZP_KEY_SECRET.trim(),id+"|"+pid);
   if(!kpConstantTimeHex(signed,sig.toLowerCase()))return kpJson({verified:false,error:"Payment signature could not be verified."},403);
   try{
     const [payment,order]=await Promise.all([
