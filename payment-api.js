@@ -51,7 +51,7 @@ async function kpHandlePaymentApi(request,env){
   if(path==="/api/payments/config"&&request.method==="GET"){
     return kpJson({enabled:kpEnabled(env),environment:"test",provider:"razorpay",
       message:kpEnabled(env)?"Gateway test mode configured. No real money moves.":"Test configuration requires attention.",
-      setupChecks:{testModeEnabled:String(env.RZP_TEST_ENABLED||"").trim().toLowerCase()==="true",testKeyRecognized:typeof env.RZP_KEY_ID==="string"&&env.RZP_KEY_ID.trim().startsWith("rzp_test_"),secretConfigured:typeof env.RZP_KEY_SECRET==="string"&&env.RZP_KEY_SECRET.trim().length>0}}});
+      setupChecks:{testModeEnabled:String(env.RZP_TEST_ENABLED||"").trim().toLowerCase()==="true",testKeyRecognized:typeof env.RZP_KEY_ID==="string"&&env.RZP_KEY_ID.trim().startsWith("rzp_test_"),secretConfigured:typeof env.RZP_KEY_SECRET==="string"&&env.RZP_KEY_SECRET.trim().length>0}});
   }
   if(path!=="/api/payments/order"&&path!=="/api/payments/verify")return kpJson({error:"Not found"},404);
   if(request.method!=="POST")return kpJson({error:"Method not allowed"},405);
