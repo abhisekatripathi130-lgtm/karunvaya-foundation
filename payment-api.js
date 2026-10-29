@@ -35,6 +35,21 @@ async function kpSignature(secret,message){
   const bytes=new Uint8Array(await crypto.subtle.sign("HMAC",key,new TextEncoder().encode(message)));
   return [...bytes].map(n=>n.toString(16).padStart(2,"0")).join("");
 }
+function kpRazorpayFailure(status, details){
+  const raw=typeof details?.description==="string"?details.description.toLowerCase():"";
+  const reason=typeof details?.reason==="string"?details.reason.toLowerCase():"";
+  const code=typeof details?.code==="string"?details.code.toUpperCase():"";
+  const badKeys=/(api key|api secret|authentication|unauthori|invalid credential|invalid key|invalid secret)/.test(raw+" "+reason);
+  let hint;
+  if(status===401||badKeys)hint="Razorpay rejected the API credentials. Check that the Test Key ID and Secret were generated together, are both active, and have no extra spaces.";
+  else if(status===403||/access denied|not allowed|permission|blocked|restricted|ip whitelist/.test(raw+" "+reason))hint="Razorpay denied this request. Review test-account permissions, any IP allowlist and dashboard restrictions.";
+  else if(/amount|limit|minimum|maximum/.test(raw+" "+reason))hint="Razorpay rejected the amount or account payment limit. Try a ₹1 TEST order first.";
+  else if(status===400)hint="Razorpay rejected the order request. Check Test Mode account setup and order creation permissions.";
+  else if(status===429)hint="Razorpay rate limit reached. Retry after a short interval.";
+  else if(status>=500)hint="Razorpay is temporarily unavailable. Try again later.";
+  else hint="Razorpay order request failed. Check your Test Mode account setup.";
+  return {hint,upstreamStatus:status,gatewayCode:/^[A-Z_]{1,64}$/.test(code)?code:"RAZORPAY_API_ERROR"};
+}
 async function kpRazorpay(env,path,method="GET",body){
   const response=await fetch("https://api.razorpay.com/v1/"+path,{
     method,headers:{"Authorization":"Basic "+btoa(env.RZP_KEY_ID.trim()+":"+env.RZP_KEY_SECRET.trim()),
@@ -43,7 +58,14 @@ async function kpRazorpay(env,path,method="GET",body){
     cache:"no-store",
     signal:AbortSignal.timeout(15000)
   });
-  if(!response.ok){throw Error("Razorpay API returned "+response.status)}
+  if(!response.ok){
+    let details={};
+    try{const payload=await response.json();details=payload?.error||{}}catch{}
+    const problem=kpRazorpayFailure(response.status,details);
+    const e=new Error(problem.hint);
+    e.safeProblem=problem;
+    throw e;
+  }
   return response.json();
 }
 async function kpHandlePaymentApi(request,env){
@@ -76,7 +98,7 @@ async function kpHandlePaymentApi(request,env){
       }
       return kpJson({orderId:order.id,keyId:env.RZP_KEY_ID.trim(),amount:order.amount,
         currency:"INR",mode:"test"});
-    }catch{return kpJson({error:"Could not create a gateway test order. Try again later."},502)}
+    }catch(err){const p=err?.safeProblem;return kpJson({error:p?.hint||"Could not reach Razorpay to create a test order. Check connectivity and try again.",gatewayStatus:p?.upstreamStatus||null,gatewayCode:p?.gatewayCode||"NETWORK_OR_SERVER_ERROR"},502)}
   }
   const id=input?.razorpay_order_id,pid=input?.razorpay_payment_id,sig=input?.razorpay_signature;
   if(typeof id!=="string"||!/^order_[a-zA-Z0-9_-]{8,80}$/.test(id)||
