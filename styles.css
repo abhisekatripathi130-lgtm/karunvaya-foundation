@@ -58,3 +58,41 @@ nav a[aria-current="page"]{color:var(--green);text-decoration:underline;text-dec
 footer a:focus-visible,button:focus-visible{outline-color:var(--gold)}
 @media(max-width:800px){.content-grid{grid-template-columns:1fr;gap:28px}.mini-cards{grid-template-columns:1fr 1fr}.inner-hero{padding:68px 0 61px}}
 @media(max-width:600px){.mini-cards,.link-grid{grid-template-columns:1fr}.mini-card{padding:24px}.soft-panel{padding:27px}.inner-hero h1{font-size:clamp(44px,12vw,62px)}.inner-hero p{font-size:14px}.faq-list summary{font-size:14px}.faq-list p{font-size:13px}}
+
+/* KARUNVAYA V4 — royal navy and champagne gold identity */
+:root{--ink:#11284b;--deep:#10294f;--green:#173e72;--muted:#536681;--cream:#f8fafc;--white:#fff;--pale:#eaf1fa;--line:#dbe3ee;--gold:#c69a47;--serif:Georgia,'Times New Roman',serif;--sans:Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
+body{background:#fafbfd;color:#162b49}
+.notice{background:#0b2140;color:#f2d49c}.notice i{background:#dcb66d}
+header{background:rgba(255,255,255,.97);border-bottom:1px solid #e3e8ee}
+.brand strong{color:#102b56}.brand small{color:#ad8136}
+.brand-mark path:first-child{fill:#eef2fa;stroke:#173965}.brand-mark path:nth-child(2){stroke:#173965}.brand-mark path:nth-child(3){fill:#d1a456}.brand-mark path:nth-child(4){stroke:#173965}
+nav a{color:#435675}nav a:hover,nav a[aria-current="page"]{color:#ae7b2d;text-decoration-color:#d4ae63}
+.header-cta,.btn-dark{background:#112e59;color:#fff}.header-cta:hover,.btn-dark:hover{background:#204c85}
+.btn-line{border-color:#b7c5d7;color:#16355f}.btn-line:hover{background:#edf2fa}
+.eyebrow{color:#ae7b2d}.eyebrow:before{background:#c49a55}
+.serif em,.section-title em,.inner-hero h1 em{color:#b8893d;font-style:italic}
+.hero{background:radial-gradient(ellipse at 84% 28%,#e7eef9 0%,transparent 48%),linear-gradient(115deg,#fff 0%,#f9fafd 70%)}
+.hero-art{background:linear-gradient(155deg,#e5ebf5,#d5e1f1);border-radius:210px 210px 14px 14px;box-shadow:0 20px 70px #15355a19}
+.hero-art:before{border-color:#b5c6da}.hero-art:after{color:#4a6794}
+.floating-note{border-left:4px solid #c9a15b;color:#1a3a69}
+.strip,.highlight{background:linear-gradient(120deg,#091c36,#173c70)}.strip span:before{color:#e0b666}.highlight .eyebrow{color:#f0c878}.highlight .eyebrow:before{background:#d5ab65}
+.highlight h2 em{color:#eac27b}.highlight p{color:#d4dfef}.highlight aside{border-left-color:#997d53;color:#f0dcb7}
+.work,.contact{background:#eef3fa}
+.card{border-color:#e0e7f1;box-shadow:0 14px 35px #193d7010;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 25px 54px #142d521f}
+.education-bg{background:linear-gradient(140deg,#e4edf9,#cbdcf0)}.welfare-bg{background:linear-gradient(140deg,#f6eedf,#eddfc9)}
+.number,.step strong,.timeline b{color:#b28b4a}.textlink{color:#173b70;border-bottom-color:#c9a15b}
+.about-side,.soft-panel{background:#edf3fb;border-color:#dce6f4}.value-list div{color:#435e7e}
+.step,.mini-card{box-shadow:0 12px 30px #1a3b6910;border:1px solid #e0e7f1}
+.inner-hero{background:linear-gradient(120deg,#0c2446,#1d4a82);color:#fff;min-height:355px}
+.inner-hero::after{border-color:#a7824973}
+.inner-hero h1{color:#fff}.inner-hero h1 em{color:#edc27d}
+.inner-hero p,.crumb,.crumb a{color:#d8e4f5}.inner-hero .eyebrow{color:#f0c67b}
+.inner-hero .eyebrow:before{background:#d2a861}
+.tag{background:#eaf1fa;color:#1e4c83;border-color:#bfcddd}
+.link-grid a{border-color:#d8e2ef}.link-grid a:hover{background:#eaf0f9}
+.inline-callout{border-left-color:#cba05a;background:#f3f5fa;color:#3b5475}
+.faq-list summary{color:#17395f}.faq-list summary:after{color:#b9904d}
+.foot{background:#081b33}.foot-bottom{border-top-color:#355071}
+section.block{position:relative}
+@media(max-width:760px){nav{background:#fff}.hero{padding-top:52px}.hero-art{border-radius:150px 150px 12px 12px}.inner-hero{min-height:auto}}
