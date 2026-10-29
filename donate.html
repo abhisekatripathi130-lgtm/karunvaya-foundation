@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10294f"><meta name="description" content="Explore the donation and giving page of Karunvaya Foundation: education and social welfare support, transparent planning, and payment readiness."><title>Donate & Support | Karunvaya Foundation</title><link rel="stylesheet" href="styles.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10294f"><meta name="description" content="Explore the donation and giving page of Karunvaya Foundation: education and social welfare support, transparent planning, and payment readiness."><title>Donation Test Mode & Sample Receipt | Karunvaya Foundation</title><link rel="stylesheet" href="styles.css"></head>
 <body id="top"><a class="skip" href="#main">Skip to content</a><div class="notice"><i></i> A NEW INITIATIVE · EDUCATION & SOCIAL WELFARE</div>
 <header>
     <div class="shell topbar">
@@ -63,6 +63,7 @@
    </fieldset>
    <div class="don-checkout-note"><span aria-hidden="true">ⓘ</span><p><strong>Donations are not open.</strong> We are establishing verified organisation details, banking and receipt processes. This page will not collect money or personal data.</p></div>
    <button class="don-disabled-cta" type="button" disabled aria-describedby="don-pay-note">Online donations opening after verification <span aria-hidden="true">↗</span></button>
+   <a class="kv-demo-jump" href="#demo-checkout">Try the TEST receipt generator instead <span aria-hidden="true">↗</span></a>
    <p class="don-disabled-hint" id="don-pay-note">No UPI, bank transfer or card payment is available here at this time.</p>
   </div>
   <aside class="don-summary-wrap" aria-label="Your preview selection">
@@ -76,6 +77,73 @@
     <div class="don-priority-card"><span>✧</span><p><strong>Already want to help?</strong> You can explore our proposed programmes or learn about future volunteering without sending money.</p><a href="volunteer.html">Explore volunteering <span aria-hidden="true">↗</span></a></div>
   </aside>
  </div></div>
+</section>
+<section class="kv-demo-section" id="demo-checkout" aria-labelledby="kv-demo-title">
+  <div class="shell">
+    <div class="kv-demo-intro">
+      <span class="don-eyebrow">INTERACTIVE TEST LAB / NO MONEY TRANSFER</span>
+      <h2 id="kv-demo-title">Test the flow. <em>Preview the receipt.</em></h2>
+      <p>This is a local browser simulation to test donation selections and an invoice-style sample receipt. Your details remain on this page; they are not sent to our servers or saved. <strong>No real payment is processed.</strong></p>
+    </div>
+    <div class="kv-demo-grid">
+      <form class="kv-demo-form" id="kv-demo-form" autocomplete="off">
+        <div class="kv-demo-header"><span class="kv-demo-step">01 / TEST CHECKOUT</span><span class="kv-demo-mode">● TEST MODE</span></div>
+        <h3>Sample donor details</h3>
+        <p class="kv-demo-muted">Use fictional details only, for example “Test Donor”. The donation amount and cause are taken from the contribution planner above.</p>
+        <label for="kv-demo-name">Donor name <span class="kv-demo-required">*</span></label>
+        <input id="kv-demo-name" type="text" name="demoName" maxlength="75" minlength="2" placeholder="Test Donor" value="Test Donor" required aria-describedby="kv-demo-name-help">
+        <small id="kv-demo-name-help">For invoice preview only. Please do not enter real personal data.</small>
+        <label for="kv-demo-reference">Optional internal note</label>
+        <input id="kv-demo-reference" type="text" name="demoNote" maxlength="70" placeholder="Website UI testing" value="Website UI testing">
+        <div class="kv-demo-amount-row"><div><span>Selected sample amount</span><strong id="kv-demo-amount">₹1,000</strong></div><div><span>Proposed cause</span><strong id="kv-demo-cause">Education</strong></div></div>
+        <label class="kv-demo-ack"><input id="kv-demo-ack" type="checkbox" required><span>I understand this is a <strong>simulation with ₹0 charged</strong>, not an actual UPI transaction, donation or payment receipt.</span></label>
+        <button type="submit" class="kv-demo-submit">Simulate checkout & create TEST receipt <span aria-hidden="true">↗</span></button>
+        <div id="kv-demo-message" class="kv-demo-message" role="status" aria-live="polite"></div>
+      </form>
+      <aside class="kv-demo-side" aria-label="How test mode works">
+        <div class="kv-demo-orb">✳</div>
+        <span class="don-eyebrow">SAFE TESTING</span>
+        <h3>Everything works.<br><em>Except the money.</em></h3>
+        <div class="kv-demo-check">✓ Change the amount, including ₹1</div>
+        <div class="kv-demo-check">✓ Switch Education / Social Welfare</div>
+        <div class="kv-demo-check">✓ Generate a professional-looking sample receipt</div>
+        <div class="kv-demo-check">✓ Print or save the receipt as PDF</div>
+        <div class="kv-demo-line"></div>
+        <p><strong>Real payment verification:</strong> A true receipt can be issued only after authorised payment confirmation through a proper payment gateway or bank reconciliation. A UPI app opening is not proof of payment.</p>
+      </aside>
+    </div>
+    <section class="kv-receipt-area" id="kv-receipt-area" hidden aria-labelledby="kv-invoice-title">
+      <div class="kv-receipt-actions">
+        <div><strong>Test receipt generated</strong><span>No funds moved. This sample is for checking layout only.</span></div>
+        <button type="button" id="kv-print-receipt" class="kv-print-btn">Print / Save as PDF <span aria-hidden="true">↗</span></button>
+      </div>
+      <article class="kv-invoice" id="kv-invoice" aria-label="Specimen invoice-style donation receipt, no actual payment">
+        <div class="kv-invoice-watermark" aria-hidden="true">SAMPLE<br>NOT VALID</div>
+        <div class="kv-invoice-ribbon">DEMO / TEST ONLY · NO PAYMENT RECEIVED</div>
+        <div class="kv-invoice-top">
+          <div><div class="kv-invoice-logo">Karunvaya<span>Foundation</span></div><small>EDUCATING MINDS. EMPOWERING LIVES.</small></div>
+          <div class="kv-invoice-id"><strong id="kv-invoice-title">SAMPLE CONTRIBUTION RECEIPT</strong><span>Invoice-style preview · Not a tax invoice</span></div>
+        </div>
+        <div class="kv-invoice-metadata">
+          <div><small>DEMO DOCUMENT REFERENCE</small><strong id="kv-invoice-ref">DEMO-KV-0000</strong></div>
+          <div><small>DATE GENERATED</small><strong id="kv-invoice-date">—</strong></div>
+          <div><small>PAYMENT MODE</small><strong>Simulated · ₹0 charged</strong></div>
+          <div><small>PAYMENT STATUS</small><strong>NOT PAID / DEMO</strong></div>
+        </div>
+        <div class="kv-invoice-parties">
+          <div><small>ISSUER (PROPOSED ORGANISATION)</small><strong>Karunvaya Foundation</strong><p>Education & Social Welfare Initiative<br>Pre-launch / organisational details pending verification</p></div>
+          <div><small>DONOR — SAMPLE INPUT</small><strong id="kv-invoice-donor">Test Donor</strong><p id="kv-invoice-note">Website UI testing</p></div>
+        </div>
+        <div class="kv-invoice-tablewrap"><table class="kv-invoice-table">
+          <thead><tr><th>DESCRIPTION</th><th>QTY</th><th>DEMO AMOUNT</th></tr></thead>
+          <tbody><tr><td><strong id="kv-invoice-line">Education — planned contribution</strong><span>Sample donation allocation (no service or payment)</span></td><td>1</td><td id="kv-invoice-price">₹1,000</td></tr></tbody>
+          <tfoot><tr><td colspan="2">SIMULATED TOTAL</td><td id="kv-invoice-total">₹1,000</td></tr><tr><td colspan="2">ACTUAL AMOUNT RECEIVED</td><td>₹0.00</td></tr></tfoot>
+        </table></div>
+        <div class="kv-invoice-signoff"><strong>THIS DOCUMENT IS A TEST SAMPLE — NO DONATION OR PAYMENT HAS OCCURRED.</strong><p>Not a receipt for funds, not a GST tax invoice, not valid for 80G or any tax deduction, and not evidence of a financial transaction. Generated locally in a browser for interface testing only.</p></div>
+        <div class="kv-invoice-footer"><span>KARUNVAYA FOUNDATION · PROPOSED INITIATIVE</span><span>SPECIMEN / NO LEGAL OR TAX VALIDITY</span></div>
+      </article>
+    </section>
+  </div>
 </section>
 <section class="don-section don-purpose-section" id="responsible-giving" aria-labelledby="giving-purpose-heading">
  <div class="shell"><div class="don-section-row"><div><span class="don-eyebrow">02 — OUR AREAS OF FOCUS</span><h2 id="giving-purpose-heading">A meaningful purpose<br>behind <em>every contribution.</em></h2></div><p>We are developing two programme areas. When donation facilities are established, actual project budgets and reporting will be shared clearly.</p></div>
