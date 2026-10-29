@@ -19,3 +19,8 @@ A mobile-friendly, no-build, multi-page HTML/CSS/JavaScript website for the prop
 
 ### Important
 This is a pre-launch concept. The organisation's legal registration has not been verified, and website forms, financial collection, and volunteer applications are intentionally disabled. Add official contact information and reviewed policies when available. No unverified impact figures are used.
+
+
+## V4 professional blue and gold theme
+
+Review branch: `website-v4-blue-gold`. This revision uses royal navy blue, muted metallic gold accents, upgraded buttons, typography and distinct hero sections across eight pages. No donation gateway or forms are active; the foundation is still pre-launch. `main` and the existing Cloudflare website remain unchanged until approval.
