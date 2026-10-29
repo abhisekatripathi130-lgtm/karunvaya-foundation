@@ -1,15 +1,21 @@
-# Karunvaya Foundation website
+## Karunvaya Foundation — V3 review branch
 
-A mobile-responsive, single-file HTML/CSS/JavaScript website for the proposed Karunvaya Foundation, initially focused on education and social welfare.
+A mobile-friendly, no-build, multi-page HTML/CSS/JavaScript website for the proposed Karunvaya Foundation. This is a **review version**; `main` remains the live production source and is not modified.
 
-## Preview and publish
+### Preview locally
+1. From GitHub, select the `website-v3-review` branch.
+2. Choose **Code → Download ZIP**, unzip, then open `index.html` in a browser (or VS Code Live Server).
+3. Edit `index.html` or any other page for text; `styles.css` for design; `script.js` for mobile menu.
 
-The site is in `index.html` at the repository root and needs no build tools. Enable GitHub Pages in **Settings → Pages → Build and deployment → Deploy from a branch**, select **main** and **/(root)**, and save. GitHub will show the published URL when deployment completes.
+### Pages
+- Home (`index.html`)
+- About (`about.html`)
+- Education (`education.html`)
+- Social Welfare (`social-welfare.html`)
+- Volunteer (`volunteer.html`)
+- Contact (`contact.html`)
+- Ways to Support (`donate.html`)
+- Privacy & Transparency (`privacy.html`)
 
-## Pre-launch notice
-
-This is a planned initiative, not a claim of legal registration. The site deliberately has no donation gateway, payment collection, application forms, or fabricated impact statistics. Verify organization registration and publish real contact, privacy, and volunteer procedures before public operational launch.
-
-## Editing
-
-Change page content in `index.html`. Styling is inside `<style>` and mobile navigation is inside `<script>` at the bottom. Commit changes to `main` to update the Pages site after activation.
+### Important
+This is a pre-launch concept. The organisation's legal registration has not been verified, and website forms, financial collection, and volunteer applications are intentionally disabled. Add official contact information and reviewed policies when available. No unverified impact figures are used.
