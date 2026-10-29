@@ -41,10 +41,10 @@
 </section>
 <div class="don-strip"><div class="shell don-strip-inner"><span>Thoughtful giving</span><span>Transparent processes</span><span>People-first impact</span></div></div>
 <section class="don-section don-planner-section" id="donation-planner" aria-labelledby="donation-planner-heading">
- <div class="shell"><div class="don-section-intro"><span class="don-eyebrow">01 — PLAN YOUR SUPPORT</span><h2 id="donation-planner-heading">Your intention can make <em>a difference.</em></h2><p>Try the contribution planner to see a potential donation amount and where you would like it directed. This is only an interactive preview; nothing is collected or paid.</p></div>
+ <div class="shell"><div class="don-section-intro"><span class="don-eyebrow">01 — PLAN YOUR SUPPORT</span><h2 id="donation-planner-heading">Your intention can make <em>a difference.</em></h2><p>Select a test amount and cause, then continue to Razorpay Test Checkout. Test gateway transactions do not move real money; verified test payments generate a labelled receipt.</p></div>
  <div class="donate-layout">
   <div class="donate-planner" aria-label="Contribution planner">
-   <div class="donate-card-head"><span class="donate-number">01 / CONTRIBUTION PLANNER</span><span class="don-preview-pill">PREVIEW ONLY</span></div>
+   <div class="donate-card-head"><span class="donate-number">01 / CONTRIBUTION PLANNER</span><span class="don-preview-pill">PAYMENT TESTING AVAILABLE</span></div>
    <fieldset class="don-fieldset"><legend>Choose an amount <span>(INR)</span></legend>
      <div class="don-amount-grid" id="don-amount-options">
         <label class="don-radio-amount"><input type="radio" name="amount" value="500"><span>₹500</span></label>
@@ -61,23 +61,29 @@
        <label class="don-purpose"><input type="radio" name="cause" value="Where most needed"><span><strong>Where most needed</strong><small>Flexible future programme support</small></span></label>
       </div>
    </fieldset>
-   <div class="don-checkout-note"><span aria-hidden="true">ⓘ</span><p><strong>Donations are not open.</strong> We are establishing verified organisation details, banking and receipt processes. This page will not collect money or personal data.</p></div>
-   <button class="don-disabled-cta" type="button" disabled aria-describedby="don-pay-note">Online donations opening after verification <span aria-hidden="true">↗</span></button>
-   <a class="kv-demo-jump" href="#demo-checkout">Try the TEST receipt generator instead <span aria-hidden="true">↗</span></a>
-   <p class="don-disabled-hint" id="don-pay-note">No UPI, bank transfer or card payment is available here at this time.</p>
+   <div class="don-checkout-note"><span aria-hidden="true">ⓘ</span><p><strong>Real donations are not open.</strong> The test checkout uses Razorpay sandbox only; no real payment or tax receipt will be issued.</p></div>
+   <div class="gateway-quick-start" role="group" aria-label="Razorpay gateway test payment">
+      <span class="gateway-quick-badge">RAZORPAY · TEST MODE</span>
+      <a class="gateway-quick-cta" id="gateway-quick-cta" href="#gateway-test">Proceed to TEST Payment <span aria-hidden="true">↗</span></a>
+      <p id="gateway-quick-status" class="gateway-quick-status" role="status" aria-live="polite">Checking test gateway connection…</p>
+      <small>No real money is deducted. A TEST receipt is issued only after gateway verification.</small>
+   </div>
+   <a class="kv-demo-jump" href="#demo-checkout">Or try ₹0 simulated receipt without checkout <span aria-hidden="true">↗</span></a>
+   <p class="don-disabled-hint" id="don-pay-note">Real NGO donations remain disabled until official verification and approval.</p>
   </div>
   <aside class="don-summary-wrap" aria-label="Your preview selection">
-    <div class="don-summary-card"><span class="donate-number">YOUR GIVING PREVIEW</span><h3>Your intention,<br><em>our shared purpose.</em></h3>
+    <div class="don-summary-card"><span class="donate-number">YOUR TEST PAYMENT SELECTION</span><h3>Your intention,<br><em>our shared purpose.</em></h3>
       <div class="don-summary-amount" id="don-summary-amount" aria-live="polite">₹1,000</div>
-      <div class="don-summary-detail"><span>Frequency</span><strong>One-time preview</strong></div>
+      <div class="don-summary-detail"><span>Frequency</span><strong>One-time test</strong></div>
       <div class="don-summary-detail"><span>Selected area</span><strong id="don-summary-cause" aria-live="polite">Education</strong></div>
       <hr><p>Once formal donation facilities are available, all contributions should go through the foundation's verified channels and receive an appropriate acknowledgement.</p>
-      <div class="don-summary-bottom"><span>SECURE GIVING BEGINS WITH TRANSPARENCY</span><span aria-hidden="true">✦</span></div>
+      <div class="don-summary-bottom"><span>GATEWAY TEST · NO REAL PAYMENT</span><span aria-hidden="true">✦</span></div>
     </div>
     <div class="don-priority-card"><span>✧</span><p><strong>Already want to help?</strong> You can explore our proposed programmes or learn about future volunteering without sending money.</p><a href="volunteer.html">Explore volunteering <span aria-hidden="true">↗</span></a></div>
   </aside>
  </div></div>
 </section>
+<section class="gateway-test" id="gateway-test" aria-labelledby="gateway-test-title"><div class="shell"><div class="gateway-test-head"><span class="don-eyebrow">RAZORPAY VERIFIED TEST CHECKOUT</span><h2 id="gateway-test-title">Test Payment Successful <em>+ Automatic Receipt.</em></h2><p>Run an authentic Razorpay <strong>TEST MODE</strong> transaction. After gateway confirmation, a clearly labelled test receipt is generated automatically. <strong>No real funds move.</strong> This feature requires a connected Razorpay test account.</p></div><div class="gateway-test-grid"><div class="gateway-test-box"><p class="gateway-label">PAYMENT FLOW</p><p id="gateway-status" role="status" aria-live="polite">Checking test gateway configuration…</p><div class="gateway-data"><span>Amount</span><strong id="gateway-amount">₹1,000</strong><span>Cause</span><strong id="gateway-cause">Education</strong><span>Environment</span><strong>Razorpay TEST</strong></div><button id="gateway-pay" type="button" disabled>Pay in TEST mode ↗</button><p class="gateway-warning">Only Razorpay's sandbox checkout is used here. Your personal UPI ID is not connected. A UPI app return alone never counts as success.</p></div><div class="gateway-test-box gateway-result"><p class="gateway-label">VERIFIED GATEWAY RESULT</p><div class="gateway-result-pending" id="gateway-result-pending">After a verified test transaction, its status and receipt will appear here.</div><div id="gateway-receipt" hidden><div class="gateway-stamp">RAZORPAY TEST PAYMENT SUCCESSFUL</div><h3>Karunvaya Foundation</h3><p><strong>TEST PAYMENT RECEIPT — NOT A DONATION RECEIPT</strong></p><dl><dt>Reference</dt><dd id="gateway-ref"></dd><dt>Payment ID</dt><dd id="gateway-payment-id"></dd><dt>Date</dt><dd id="gateway-date"></dd><dt>Cause</dt><dd id="gateway-receipt-cause"></dd><dt>Test amount</dt><dd id="gateway-receipt-amount"></dd><dt>Actual funds received</dt><dd>₹0.00</dd></dl><p><strong>TEST ONLY • No money received • Not a GST invoice or 80G receipt.</strong></p><button id="gateway-print" type="button">Print / Save TEST receipt as PDF</button></div></div></div></div></section>
 <section class="kv-demo-section" id="demo-checkout" aria-labelledby="kv-demo-title">
   <div class="shell">
     <div class="kv-demo-intro">
@@ -145,7 +151,7 @@
     </section>
   </div>
 </section>
-<section class="gateway-test" id="gateway-test" aria-labelledby="gateway-test-title"><div class="shell"><div class="gateway-test-head"><span class="don-eyebrow">RAZORPAY VERIFIED TEST CHECKOUT</span><h2 id="gateway-test-title">Test Payment Successful <em>+ Automatic Receipt.</em></h2><p>Run an authentic Razorpay <strong>TEST MODE</strong> transaction. After gateway confirmation, a clearly labelled test receipt is generated automatically. <strong>No real funds move.</strong> This feature requires a connected Razorpay test account.</p></div><div class="gateway-test-grid"><div class="gateway-test-box"><p class="gateway-label">PAYMENT FLOW</p><p id="gateway-status" role="status" aria-live="polite">Checking test gateway configuration…</p><div class="gateway-data"><span>Amount</span><strong id="gateway-amount">₹1,000</strong><span>Cause</span><strong id="gateway-cause">Education</strong><span>Environment</span><strong>Razorpay TEST</strong></div><button id="gateway-pay" type="button" disabled>Pay in TEST mode ↗</button><p class="gateway-warning">Only Razorpay's sandbox checkout is used here. Your personal UPI ID is not connected. A UPI app return alone never counts as success.</p></div><div class="gateway-test-box gateway-result"><p class="gateway-label">VERIFIED GATEWAY RESULT</p><div class="gateway-result-pending" id="gateway-result-pending">After a verified test transaction, its status and receipt will appear here.</div><div id="gateway-receipt" hidden><div class="gateway-stamp">RAZORPAY TEST PAYMENT SUCCESSFUL</div><h3>Karunvaya Foundation</h3><p><strong>TEST PAYMENT RECEIPT — NOT A DONATION RECEIPT</strong></p><dl><dt>Reference</dt><dd id="gateway-ref"></dd><dt>Payment ID</dt><dd id="gateway-payment-id"></dd><dt>Date</dt><dd id="gateway-date"></dd><dt>Cause</dt><dd id="gateway-receipt-cause"></dd><dt>Test amount</dt><dd id="gateway-receipt-amount"></dd><dt>Actual funds received</dt><dd>₹0.00</dd></dl><p><strong>TEST ONLY • No money received • Not a GST invoice or 80G receipt.</strong></p><button id="gateway-print" type="button">Print / Save TEST receipt as PDF</button></div></div></div></div></section><section class="don-section don-purpose-section" id="responsible-giving" aria-labelledby="giving-purpose-heading">
+<section class="don-section don-purpose-section" id="responsible-giving" aria-labelledby="giving-purpose-heading">
  <div class="shell"><div class="don-section-row"><div><span class="don-eyebrow">02 — OUR AREAS OF FOCUS</span><h2 id="giving-purpose-heading">A meaningful purpose<br>behind <em>every contribution.</em></h2></div><p>We are developing two programme areas. When donation facilities are established, actual project budgets and reporting will be shared clearly.</p></div>
    <div class="don-focus-grid">
     <article class="don-focus-card"><div class="don-focus-card-art don-focus-education"><span aria-hidden="true">01</span><svg viewBox="0 0 160 120" aria-hidden="true"><path d="M80 97C59 81 40 79 21 84V27c25-6 45 0 59 17 14-17 34-23 59-17v57c-19-5-38-3-59 13Z" fill="#fff" stroke="#244e85" stroke-width="3"/><path d="M80 44v52M36 47c16-2 29 2 37 11m14 0c8-9 21-13 37-11" stroke="#b3c7e0" stroke-width="2" fill="none"/><path d="M81 29c-22-8-21-23-16-29 13 1 16 8 16 29m0 0C103 21 102 6 97 0 84 1 81 8 81 29" fill="#cfa355"/></svg></div><div class="don-focus-content"><span class="donate-number">FOCUS 01</span><h3>Education</h3><p>Supporting access to learning opportunities, foundational education and essential materials for children.</p><a href="education.html">Explore education <span aria-hidden="true">↗</span></a></div></article>
