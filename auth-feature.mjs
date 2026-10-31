@@ -1,0 +1,43 @@
+// Inject before export default in the existing deployed worker; route /api/auth/* to kvAuth(request, env).
+
+const kvHex=b=>Array.from(new Uint8Array(b),v=>v.toString(16).padStart(2,'0')).join('');
+async function kvDigest(s){return kvHex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))}
+async function kvPassword(p,s){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(p),'PBKDF2',false,['deriveBits']);return kvHex(await crypto.subtle.deriveBits({name:'PBKDF2',salt:new TextEncoder().encode(s),iterations:100000,hash:'SHA-256'},k,256))}
+async function kvAuth(request,env){
+ const path=new URL(request.url).pathname,db=env.VOLUNTEER_DB;
+ const reply=(v,status=200,cookie)=>new Response(JSON.stringify(v),{status,headers:{'content-type':'application/json','cache-control':'no-store',...(cookie?{'set-cookie':cookie}:{})}});
+ if(!db)return reply({error:'Account service unavailable'},503);
+ const token=(request.headers.get('cookie')||'').match(/(?:^|; )kv_session=([a-f0-9]{64})(?:;|$)/)?.[1];
+ const session=token?await db.prepare('SELECT u.id,u.name,u.email,s.token_hash FROM kv_sessions s JOIN kv_users u ON u.id=s.user_id WHERE s.token_hash=? AND s.expires_at>?').bind(await kvDigest(token),Date.now()).first():null;
+ if(path==='/api/auth/me'&&request.method==='GET')return session?reply({name:session.name,email:session.email}):reply({error:'Please log in'},401);
+ if(request.method!=='POST')return reply({error:'Method not allowed'},405);
+ if(request.headers.get('origin')!==new URL(request.url).origin)return reply({error:'Invalid origin'},403);
+ if(!request.headers.get('content-type')?.includes('application/json'))return reply({error:'Use JSON'},415);
+ if(path==='/api/auth/logout'){if(token)await db.prepare('DELETE FROM kv_sessions WHERE token_hash=?').bind(await kvDigest(token)).run();return reply({success:true},200,'kv_session=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0')}
+ if(!['/api/auth/register','/api/auth/login'].includes(path))return reply({error:'Not found'},404);
+ let raw=await request.text();if(raw.length>5000)return reply({error:'Request too large'},413);let d;try{d=JSON.parse(raw)}catch{return reply({error:'Invalid request'},400)}
+ const email=String(d.email||'').trim().toLowerCase(),password=typeof d.password==='string'?d.password:'',name=String(d.name||'').trim();
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||email.length>150||password.length<10||password.length>128)return reply({error:'Enter a valid email and a password of 10–128 characters.'},400);
+ const bucket=Math.floor(Date.now()/900000),rateKey=await kvDigest((request.headers.get('cf-connecting-ip')||'unknown')+':'+bucket);
+ const rate=await db.prepare('INSERT INTO kv_auth_limits (id,attempts) VALUES (?,1) ON CONFLICT(id) DO UPDATE SET attempts=attempts+1 RETURNING attempts').bind(rateKey).first();
+ if(rate.attempts>30)return reply({error:'Too many attempts. Please try again in 15 minutes.'},429);
+ let user=await db.prepare('SELECT * FROM kv_users WHERE email=?').bind(email).first();
+ if(path.endsWith('/register')){
+ if(d.accept!==true||name.length<2||name.length>100)return reply({error:'Enter your name and accept the Terms & Conditions and Privacy Policy.'},400);
+ if(user)return reply({error:'Unable to create this account. Try logging in or contact our team.'},409);
+ const salt=crypto.randomUUID(),id=crypto.randomUUID(),hash=await kvPassword(password,salt);
+ try{await db.prepare('INSERT INTO kv_users (id,name,email,password_hash,salt,consent_at,policy_version) VALUES (?,?,?,?,?,?,?)').bind(id,name,email,hash,salt,new Date().toISOString(),'2026-10-31').run()}catch{return reply({error:'Unable to create account. Try logging in.'},409)}
+ user={id,name,email};
+ }else{const hash=await kvPassword(password,user?.salt||'missing-account-salt');let diff=0;const expected=user?.password_hash||'0'.repeat(64);for(let i=0;i<64;i++)diff|=hash.charCodeAt(i)^expected.charCodeAt(i);if(!user||diff)return reply({error:'Email or password is incorrect.'},401)}
+ const newToken=kvHex(crypto.getRandomValues(new Uint8Array(32)));
+ await db.prepare('INSERT INTO kv_sessions (token_hash,user_id,expires_at,created_at) VALUES (?,?,?,?)').bind(await kvDigest(newToken),user.id,Date.now()+604800000,new Date().toISOString()).run();
+ return reply({success:true,name:user.name},200,'kv_session='+newToken+'; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800');
+}
+const kvAuthScript = "\ndocument.addEventListener('DOMContentLoaded',async()=>{\nconst nav=document.getElementById('primary-nav');const link=document.createElement('a');link.href='/login.html';link.textContent='Login / Register';if(nav)nav.append(link);\nlet me=null;try{const r=await fetch('/api/auth/me');if(r.ok)me=await r.json()}catch{}\nif(me){link.href='/account.html';link.textContent='My Account'}\nconst out=document.getElementById('auth-message'),form=document.getElementById('auth-form');\nif(form){form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;const b=form.querySelector('button');b.disabled=true;out.textContent='Please wait…';try{const data=Object.fromEntries(new FormData(form));data.accept=form.elements.accept?.checked===true;const r=await fetch('/api/auth/'+form.dataset.action,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(data)});const x=await r.json();if(!r.ok)throw Error(x.error);location.href='/account.html'}catch(e){out.textContent=e.message}finally{b.disabled=false}})}\nconst account=document.getElementById('account-name');if(account){if(!me){location.replace('/login.html');return}account.textContent=me.name;document.getElementById('account-email').textContent=me.email}\ndocument.getElementById('logout')?.addEventListener('click',async()=>{const r=await fetch('/api/auth/logout',{method:'POST',headers:{'content-type':'application/json'},body:'{}'});if(r.ok)location.replace('/login.html');else out.textContent='Unable to log out. Please try again.'});\n});";
+FILES['/auth.js']=kvAuthScript;
+const kvAuthBase=FILES['/my-volunteer-panel.html'];
+function kvAuthPage(title,body){return kvAuthBase.replace(/<title>.*?<\/title>/,'<title>'+title+' | Karunvaya Foundation</title>').replace(/<main[\s\S]*?<\/main>/,'<main id="main"><section class="inner-hero"><div class="shell"><h1>'+title+'</h1><p>Your space at Karunvaya Foundation.</p></div></section><section class="block"><div class="shell"><div class="volunteer-form" style="max-width:650px;margin:auto">'+body+'<p id="auth-message" role="status" aria-live="polite"></p></div></div></section></main>')}
+FILES['/login.html']=kvAuthPage('Welcome back','<form id="auth-form" data-action="login"><div class="volunteer-fields"><label>Email address<input name="email" type="email" autocomplete="username" required maxlength="150"></label><label>Password<input name="password" type="password" autocomplete="current-password" required minlength="10" maxlength="128"></label></div><br><button class="header-cta" type="submit">Log in</button></form><p>New here? <a href="/register.html">Create an account →</a></p><p>Need account help? <a href="/contact.html">Contact our team</a></p>');
+FILES['/register.html']=kvAuthPage('Create your account','<form id="auth-form" data-action="register"><div class="volunteer-fields"><label>Full name<input name="name" autocomplete="name" required minlength="2" maxlength="100"></label><label>Email address<input name="email" type="email" autocomplete="username" required maxlength="150"></label><label>Password (10–128 characters)<input name="password" type="password" autocomplete="new-password" required minlength="10" maxlength="128"></label></div><p><label style="display:flex;gap:12px;align-items:flex-start"><input style="width:20px;height:20px;flex-shrink:0" type="checkbox" name="accept" required><span>I agree to the <a href="/terms.html" target="_blank" rel="noopener" style="text-decoration:underline">Terms & Conditions</a> and acknowledge the <a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">Privacy Policy</a>.</span></label></p><button class="header-cta" type="submit">Register</button></form><p>Already registered? <a href="/login.html">Log in →</a></p>');
+FILES['/account.html']=kvAuthPage('My Account','<h2>Welcome, <span id="account-name"></span></h2><p id="account-email"></p><p><a href="/volunteer.html">Become a Volunteer →</a></p><p><a href="/my-volunteer-panel.html">Track an existing volunteer application →</a></p><button class="header-cta" id="logout" type="button">Log out of this device</button>');
+for(const p of Object.keys(FILES)){if(p.endsWith('.html')||p==='/')FILES[p]=FILES[p].replace('</body>','<script src="/auth.js" defer></script></body>')}
