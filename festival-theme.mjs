@@ -73,7 +73,7 @@ export function applyFestivalTheme(html, now = new Date()) {
   const [dark, bright, accent, motif] = themes[theme];
   const diwali = /diwali|dhanteras/i.test(name);
   const style = `<style id="krf-festival-style">
-    .krf-festival{box-sizing:border-box;width:100%;grid-column:1/-1;flex:0 0 100%;min-width:0;position:relative;isolation:isolate;overflow:hidden;text-align:center;padding:clamp(.7rem,2vw,1.15rem) 1rem;color:#fffaf1;background:radial-gradient(ellipse at 12% 0%,${bright},transparent 56%),linear-gradient(110deg,${dark},${bright},${dark});border-bottom:2px solid ${accent};font-family:system-ui,sans-serif;line-height:1.3}
+    .krf-festival{box-sizing:border-box;width:100%;grid-column:1/-1;flex:0 0 auto;align-self:stretch;height:auto;min-height:0;max-height:none;margin:0;inset:auto;display:block;min-width:0;position:relative;isolation:isolate;overflow:hidden;text-align:center;padding:clamp(.7rem,2vw,1.15rem) 1rem;color:#fffaf1;background:radial-gradient(ellipse at 12% 0%,${bright},transparent 56%),linear-gradient(110deg,${dark},${bright},${dark});border-bottom:2px solid ${accent};font-family:system-ui,sans-serif;line-height:1.3}
     .krf-festival::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.32;background:radial-gradient(circle,${accent} 1px,transparent 2px) 0 0/29px 23px;pointer-events:none}
     .krf-festival-label{display:block;color:${accent};font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;font-weight:750}
     .krf-festival-message{display:flex;align-items:center;justify-content:center;gap:.65rem;margin-top:.2rem;font-size:clamp(.95rem,2.5vw,1.35rem);font-weight:750;overflow-wrap:anywhere}
@@ -101,7 +101,7 @@ export function applyFestivalTheme(html, now = new Date()) {
   const decoration = diwali ? diya + diya.replace('krf-diya"', 'krf-diya right"') : '';
   const title = diwali ? (name === 'Dhanteras' ? 'Shubh Dhanteras' : 'Celebrate the light of Diwali') : greeting;
   const subtitle = diwali ? '<span class="krf-festival-sub">May every home shine with hope, learning and kindness.<br>Warm wishes from Karunvaya Foundation</span>' : '';
-  const banner = `<aside class="krf-festival" aria-label="Festival greeting"><span class="krf-festival-label">${name.replace(/&/g, '&amp;')}</span><strong class="krf-festival-message">${icon}<span>${title.replace(/&/g, '&amp;')}</span>${icon}</strong>${subtitle}${decoration}</aside>`;
+  const banner = `<div role="region" class="krf-festival" aria-label="Festival greeting"><span class="krf-festival-label">${name.replace(/&/g, '&amp;')}</span><strong class="krf-festival-message">${icon}<span>${title.replace(/&/g, '&amp;')}</span>${icon}</strong>${subtitle}${decoration}</div>`;
   return html.replace(/<\/head>/i, style + '</head>')
     .replace(/<body\b[^>]*>(\s*<a\b[^>]*class=["']skip["'][^>]*>[^<]*<\/a>)?/i, opening => opening + banner);
 }
