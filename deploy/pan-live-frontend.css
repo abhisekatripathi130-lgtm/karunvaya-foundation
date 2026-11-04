@@ -1,0 +1,18 @@
+
+/* PAN live verification: no fake verified state */
+#kv-pan-gate{border:1px solid #bd9654!important;background:#10294f!important;color:#f6f9ff!important;padding:22px!important;border-radius:12px!important}
+#kv-pan-gate .kv-pan-kicker,#kv-pan-gate .kv-pan-overline{color:#e3c38b!important}
+#kv-pan-gate .kv-pan-title{color:#fff!important;font-family:Georgia,serif!important;font-size:clamp(20px,2vw,26px)!important}
+#kv-pan-gate .kv-pan-text,#kv-pan-gate .kv-pan-note{color:#e5ebf4!important;line-height:1.75!important}
+#kv-pan-gate .kv-pan-label{color:#f6f9ff!important}
+#kv-pan-gate .kv-pan-status{background:#203c61!important;border:1px solid #617a9a!important;color:#fff!important;padding:12px 14px!important;border-radius:8px!important}
+#kv-pan-gate .kv-pan-status[data-verified="true"]{background:#1c654c!important;border-color:#99d1b8!important}
+#kv-pan-gate .kv-pan-alert{background:#243e5f!important;border:1px solid #57708f!important;color:#fff!important}
+#kv-pan-gate .kv-pan-input{background:#fff!important;color:#112d4f!important;letter-spacing:.04em!important;font-weight:550!important;max-width:420px!important}
+#kv-pan-gate .kv-pan-input:disabled{color:#5e6f86!important;background:#e9edf3!important}
+#kv-pan-gate .kv-pan-name-input{text-transform:none!important;letter-spacing:0!important}
+#kv-pan-gate .kv-pan-consent{display:flex;gap:10px;align-items:flex-start;margin:16px 0;font-size:12.5px;line-height:1.75;color:#e5ebf4}
+#kv-pan-gate .kv-pan-consent input{margin-top:5px;accent-color:#b38a46;min-width:16px;min-height:16px}
+#kv-pan-gate .kv-pan-verify{background:#e8c68d;color:#10294f;border:1px solid #e8c68d;border-radius:8px;padding:12px 17px;font:700 13px/1.5 Inter,"Segoe UI",sans-serif;cursor:pointer}
+#kv-pan-gate .kv-pan-verify:disabled{background:#a9b4c6;border-color:#a9b4c6;color:#364a65;cursor:not-allowed}
+#kv-pan-gate [hidden]{display:none!important}
