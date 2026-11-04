@@ -74,11 +74,11 @@ async function panApi(request,env){
 }
 async function panOrderGate(request,env){
  if(request.method!=='POST')return env.BACKEND.fetch(request);
- if(!panReady(env))return env.BACKEND.fetch(request); // Existing backend enforces the original ₹1 lakh cap.
  if(!panOriginOK(request))return panReply({error:'Invalid origin'},403);
  let original;try{original=await request.clone().json()}catch{return panReply({error:'Invalid payment request'},400)}
  const amount=Number(original.amount);
  if(!Number.isSafeInteger(amount)||amount<=PAN_HIGH_VALUE_THRESHOLD)return env.BACKEND.fetch(request);
+ if(!panReady(env))return panReply({error:'Live PAN verification is unavailable; contributions above ₹1,00,000 are blocked.'},503);
  const donorName=original.donor?.name;
  if(!await panCheckToken(original.panVerificationToken,amount,donorName,env.PAN_TOKEN_SECRET))return panReply({error:'A live verified PAN token bound to this amount and name is required before checkout.'},403);
  if(env.HIGH_VALUE_CHECKOUT_ENABLED!=='true')return panReply({error:'PAN verified, but high-value donations are not enabled until payment-gateway onboarding and approval.'},503);
