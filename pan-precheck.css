@@ -16,3 +16,12 @@
 .kv-pan-stop strong{color:#10294f}
 .kv-pan-inline-hint{display:block;font-size:12px;line-height:1.65;color:#775526;margin-top:7px}
 @media(max-width:600px){.kv-pan-gate{padding:15px}.kv-pan-title{font-size:21px}.kv-pan-input{max-width:100%}}
+
+/* Always-visible PAN information card on the live Giving form */
+#kv-pan-gate.kv-pan-gate{display:block!important;visibility:visible!important;opacity:1!important;position:relative!important;max-width:100%!important;box-sizing:border-box!important;margin:22px 0!important}
+#kv-pan-gate .kv-pan-kicker{font-weight:800;letter-spacing:.12em;font-size:11px;color:#8b642b;text-transform:uppercase}
+#kv-pan-gate .kv-pan-title{margin-top:8px}
+#kv-pan-gate .kv-pan-alert{margin-top:12px;padding:13px 15px;border-radius:9px;background:#fff5df;border:1px solid #ebd5aa;color:#63481c;font-size:13px;font-weight:650;line-height:1.7}
+#kv-pan-gate .kv-pan-disabled-action{display:inline-flex;align-items:center;justify-content:center;min-height:42px;margin-top:12px;padding:11px 16px;border:1px solid #c7d3df;border-radius:8px;background:#e8edf3;color:#55687e;font-weight:700;font-size:13px;cursor:not-allowed}
+#kv-pan-gate .kv-pan-input:disabled{background:#f1f4f8!important;color:#6b7d91!important;cursor:not-allowed!important}
+#kv-pan-gate .kv-pan-status{padding:10px 12px;background:#f1f6fc;border-radius:8px;color:#1f3d60;font-weight:700;font-size:13px;line-height:1.6;margin:12px 0}
