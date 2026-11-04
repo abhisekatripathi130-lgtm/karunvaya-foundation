@@ -71,6 +71,7 @@ export function applyFestivalTheme(html, now = new Date()) {
   if (!event || !/<body\b[^>]*>/i.test(html)) return html;
   const [name, theme, greeting = 'Happy ' + name] = event;
   const [dark, bright, accent, motif] = themes[theme];
+  const diwali = /diwali|dhanteras/i.test(name);
   const style = `<style id="krf-festival-style">
     .krf-festival{box-sizing:border-box;width:100%;grid-column:1/-1;flex:0 0 100%;min-width:0;position:relative;isolation:isolate;overflow:hidden;text-align:center;padding:clamp(.7rem,2vw,1.15rem) 1rem;color:#fffaf1;background:radial-gradient(ellipse at 12% 0%,${bright},transparent 56%),linear-gradient(110deg,${dark},${bright},${dark});border-bottom:2px solid ${accent};font-family:system-ui,sans-serif;line-height:1.3}
     .krf-festival::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.32;background:radial-gradient(circle,${accent} 1px,transparent 2px) 0 0/29px 23px;pointer-events:none}
@@ -78,10 +79,29 @@ export function applyFestivalTheme(html, now = new Date()) {
     .krf-festival-message{display:flex;align-items:center;justify-content:center;gap:.65rem;margin-top:.2rem;font-size:clamp(.95rem,2.5vw,1.35rem);font-weight:750;overflow-wrap:anywhere}
     .krf-festival-motif{color:${accent};flex:none}
     body:has(>.krf-festival) .story{box-shadow:inset 0 4px 0 ${accent}}
+    ${diwali ? `
+    body{background-color:#fffaf0}
+    .krf-festival{padding:30px 150px 26px;background:radial-gradient(ellipse at 50% 130%,#a55920 0,transparent 65%),linear-gradient(110deg,#111c36,#342039,#111c36);border-bottom:3px solid #e4b65e}
+    .krf-festival-label{font-size:11px;letter-spacing:.22em}
+    .krf-festival-message{font-family:Georgia,serif;font-size:clamp(24px,3.5vw,42px);font-weight:400;margin-top:9px}
+    .krf-festival-sub{display:block;font-size:13px;line-height:1.6;color:#ffe9be;margin-top:8px}
+    .krf-diya{position:absolute;bottom:12px;width:115px;height:110px;left:5%;pointer-events:none}
+    .krf-diya.right{left:auto;right:5%;transform:scaleX(-1)}
+    .krf-festival::after{content:"";position:absolute;top:0;left:0;right:0;height:15px;background:radial-gradient(ellipse at center top,#ffe9a8 0 3px,transparent 5px) 0 0/38px 16px;filter:drop-shadow(0 2px 5px #ffc754);pointer-events:none}
+    body:has(.krf-diya) header{background:#fffcf5;border-bottom:1px solid #dfbf79}
+    body:has(.krf-diya) .hero{background:radial-gradient(ellipse at 94% 10%,#ffe3a966,transparent 50%),linear-gradient(120deg,#fffdf8,#fff7e8)}
+    body:has(.krf-diya) .story{background:radial-gradient(ellipse at bottom,#784020,#142440 70%);box-shadow:inset 0 4px #e5b65f}
+    body:has(.krf-diya) footer{border-top:3px solid #d8ac52}
+    @media(max-width:600px){.krf-festival{padding:26px 48px 22px}.krf-diya{width:45px;height:65px;left:1%;bottom:10px}.krf-diya.right{right:1%}.krf-festival-sub{font-size:11px}.krf-festival-message{gap:5px}.krf-festival-motif{display:none}}
+    ` : ''}
     @media print{.krf-festival{display:none}}
   </style>`;
   const icon = `<span class="krf-festival-motif" aria-hidden="true">${motif}</span>`;
-  const banner = `<aside class="krf-festival" aria-label="Festival greeting"><span class="krf-festival-label">${name.replace(/&/g, '&amp;')}</span><strong class="krf-festival-message">${icon}<span>${greeting.replace(/&/g, '&amp;')}</span>${icon}</strong></aside>`;
+  const diya = '<svg class="krf-diya" viewBox="0 0 120 110" aria-hidden="true"><ellipse cx="60" cy="94" rx="49" ry="8" fill="#ffbd4c" opacity=".15"/><path d="M12 64 Q60 111 108 64Z" fill="#d78b30" stroke="#ffda85" stroke-width="2"/><ellipse cx="60" cy="64" rx="48" ry="9" fill="#81341f" stroke="#e6b965" stroke-width="2"/><path d="M60 61 C26 43 60 13 62 4 C61 31 88 39 60 61" fill="#ffc95b"/><path d="M60 59 Q46 48 61 30 Q73 48 60 59" fill="#fff3bb"/><path d="M30 76 Q60 93 90 76" fill="none" stroke="#ffe1a2" stroke-width="2"/></svg>';
+  const decoration = diwali ? diya + diya.replace('krf-diya"', 'krf-diya right"') : '';
+  const title = diwali ? (name === 'Dhanteras' ? 'Shubh Dhanteras' : 'Celebrate the light of Diwali') : greeting;
+  const subtitle = diwali ? '<span class="krf-festival-sub">May every home shine with hope, learning and kindness.<br>Warm wishes from Karunvaya Foundation</span>' : '';
+  const banner = `<aside class="krf-festival" aria-label="Festival greeting"><span class="krf-festival-label">${name.replace(/&/g, '&amp;')}</span><strong class="krf-festival-message">${icon}<span>${title.replace(/&/g, '&amp;')}</span>${icon}</strong>${subtitle}${decoration}</aside>`;
   return html.replace(/<\/head>/i, style + '</head>')
     .replace(/<body\b[^>]*>(\s*<a\b[^>]*class=["']skip["'][^>]*>[^<]*<\/a>)?/i, opening => opening + banner);
 }
