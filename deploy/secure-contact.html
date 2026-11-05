@@ -1,0 +1,18 @@
+<section class="kv-contact-section" id="kv-secure-contact" aria-labelledby="kv-contact-heading">
+<div class="kv-contact-container">
+ <div class="kv-contact-intro"><span class="kv-contact-eyebrow">DIRECT TO THE FOUNDATION</span><h2 id="kv-contact-heading">Write to us. <em>We're listening.</em></h2><p>Send an enquiry directly to our private administrative inbox. You'll receive an on-screen reference number when the message is successfully saved. This form does not send an email or guarantee an immediate response.</p><div class="kv-contact-aside-note"><strong>Confidential enquiries</strong><span>Your details are available only to authorised foundation administrators, not published on the website.</span></div></div>
+ <form id="kv-contact-form" class="kv-contact-form" autocomplete="on">
+  <div class="kv-contact-form-header"><span>CONTACT FORM</span><span>All required fields marked *</span></div>
+  <div class="kv-contact-form-grid">
+   <label class="kv-contact-field"><span>Your name *</span><input name="name" type="text" minlength="2" maxlength="100" required autocomplete="name" placeholder="Full name"></label>
+   <label class="kv-contact-field"><span>Email address *</span><input name="email" type="email" maxlength="160" required autocomplete="email" placeholder="you@example.com"></label>
+  </div>
+  <label class="kv-contact-field"><span>How can we help? *</span><select name="category" required><option value="">Select a subject</option><option value="General enquiry">General enquiry</option><option value="Volunteer coordination">Volunteer coordination</option><option value="Education programmes">Education programmes</option><option value="Social welfare programmes">Social welfare programmes</option><option value="Feedback or concern">Feedback or concern</option></select></label>
+  <label class="kv-contact-field"><span>Your message *</span><textarea name="message" minlength="15" maxlength="2500" rows="5" required placeholder="Tell us how we can help (15–2,500 characters)"></textarea></label>
+  <div class="kv-contact-honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+  <label class="kv-contact-consent"><input type="checkbox" name="consent" required><span>I agree that my information may be stored securely and reviewed by authorised Karunvaya Foundation administrators to respond to this enquiry. <a href="/privacy.html#kv-contact-privacy">How we handle contact data</a>.</span></label>
+  <button type="submit" id="kv-contact-submit">Submit enquiry <span aria-hidden="true">↗</span></button>
+  <p role="status" aria-live="polite" class="kv-contact-message" id="kv-contact-message"></p>
+ </form>
+</div>
+</section>
