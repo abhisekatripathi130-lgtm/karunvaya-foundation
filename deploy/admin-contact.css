@@ -1,0 +1,22 @@
+
+#kv-contact-admin-tab{width:100%;display:block;text-align:left;padding:13px 16px!important;background:transparent;color:#eaf1fa;font:600 13px/1.4 Inter,"Segoe UI",system-ui,sans-serif;border:0;cursor:pointer;border-radius:8px}
+#kv-contact-admin-tab:hover{background:#294b71}
+#kv-contact-inbox{width:min(940px,calc(100vw - 30px));max-height:calc(100vh - 40px);border:1px solid #dce5ed;border-radius:16px;padding:0;background:#f9fbfd;color:#142f4f;box-shadow:0 24px 80px #10294f50;overflow:auto}
+#kv-contact-inbox::backdrop{background:#07182aa8;backdrop-filter:blur(3px)}
+.kv-inbox-header{position:sticky;top:0;z-index:3;background:#10294f;color:#fff;border-bottom:2px solid #d2a75f;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.kv-inbox-header h2{font:400 24px/1.25 Georgia,"Times New Roman",serif;color:#fff;margin:0}
+.kv-inbox-header button{background:white;border:1px solid #c4d2e0;border-radius:9px;padding:9px 13px;color:#173457;cursor:pointer}
+.kv-inbox-body{padding:23px}
+.kv-inbox-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;color:#607188;font-size:12px}
+.kv-inbox-meta button,.kv-inbox-action{border:1px solid #c3d0df;background:#fff;color:#143456;border-radius:8px;padding:9px 12px;cursor:pointer;font-size:12px;font-weight:650}
+.kv-inbox-list{display:flex;flex-direction:column;gap:12px}
+.kv-inbox-item{border:1px solid #e0e7ee;background:#fff;padding:18px;border-radius:11px}
+.kv-inbox-itemtop{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.kv-inbox-item strong{color:#102d4d;font-size:14px}
+.kv-inbox-item small{font-size:12px;color:#647a8e}
+.kv-inbox-item a{color:#18496f;text-decoration:underline}
+.kv-inbox-topic{color:#9a7335;font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+.kv-inbox-message{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;color:#2c435f;line-height:1.7;margin:13px 0}
+.kv-inbox-status{display:inline-block;color:#6d4c1e;background:#fff3db;border-radius:99px;padding:5px 10px;font-size:11px;font-weight:750}
+.kv-inbox-ref{font-family:ui-monospace,monospace;font-size:11px;overflow-wrap:anywhere}
+@media(max-width:600px){.kv-inbox-body{padding:14px}.kv-inbox-header{padding:15px}.kv-inbox-header h2{font-size:20px}}
