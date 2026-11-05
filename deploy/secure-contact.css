@@ -1,0 +1,29 @@
+/* Secure public contact form — no fake email delivery claims */
+.kv-contact-section{background:#f7f6f2;padding:83px 0;color:#142f4f;border-top:1px solid #eee5d8}
+.kv-contact-section *{box-sizing:border-box}
+.kv-contact-container{width:min(1170px,calc(100% - 48px));margin:auto;display:grid;grid-template-columns: minmax(0,.84fr) minmax(0,1.16fr);gap:clamp(28px,6vw,88px);align-items:start}
+.kv-contact-eyebrow{font:800 10px/1.5 Inter,"Segoe UI",system-ui,sans-serif;letter-spacing:.18em;color:#a58043}
+.kv-contact-intro h2{font:400 clamp(31px,4.4vw,52px)/1.08 Georgia,"Times New Roman",serif;letter-spacing:-.035em;color:#122e4d;margin:17px 0 20px}
+.kv-contact-intro h2 em{color:#ac8344;font-weight:400}
+.kv-contact-intro p{font-size:14px;line-height:1.85;color:#596e83}
+.kv-contact-aside-note{display:flex;gap:7px;flex-direction:column;margin-top:27px;padding:19px 21px;background:#fffdf7;border:1px solid #e8dfce;border-radius:10px;font-size:13px;color:#51657d;line-height:1.75}
+.kv-contact-aside-note strong{color:#0e2c4c}
+.kv-contact-form{background:white;border:1px solid #e5e5e5;border-radius:16px;padding:30px;box-shadow:0 12px 30px #0a284812;display:flex;flex-direction:column;gap:18px;font-family:Inter,"Segoe UI",system-ui,sans-serif}
+.kv-contact-form-header{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #e4e9ed;padding-bottom:14px;font-size:10px;line-height:1.5;color:#8290a0}
+.kv-contact-form-header span:first-child{letter-spacing:.15em;color:#99703a;font-weight:800}
+.kv-contact-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.kv-contact-field{display:flex;flex-direction:column;gap:8px;color:#17324d;font-size:12.5px;font-weight:700}
+.kv-contact-field :is(input,select,textarea){width:100%;min-height:45px;padding:12px 13px;border:1px solid #cad5e0;border-radius:8px;color:#17324d;background:#fff;font:400 13.5px/1.5 Inter,"Segoe UI",system-ui,sans-serif;letter-spacing:0}
+.kv-contact-field textarea{resize:vertical;min-height:128px}
+.kv-contact-field :is(input,select,textarea):focus-visible{outline:2px solid #b48b4d;outline-offset:2px}
+.kv-contact-consent{display:flex;align-items:flex-start;gap:10px;font-size:12px;line-height:1.75;color:#556981}
+.kv-contact-consent input{accent-color:#153d62;margin-top:4px;flex:none;width:16px;height:16px}
+.kv-contact-consent a{color:#946e37;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+#kv-contact-submit{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:48px;padding:12px 24px;background:#112f51;color:#fff6e8;border:1px solid #112f51;border-radius:8px;cursor:pointer;font:750 13px/1.5 Inter,"Segoe UI",system-ui,sans-serif;transition:background .2s}
+#kv-contact-submit:hover{background:#21486e}
+#kv-contact-submit:disabled{opacity:.65;cursor:wait}
+.kv-contact-message{color:#194b40;font-size:13px;line-height:1.8;margin:0}
+.kv-contact-message[data-error=true]{color:#a13a32}
+.kv-contact-honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+@media(max-width:800px){.kv-contact-section{padding:54px 0}.kv-contact-container{grid-template-columns:1fr;gap:22px}.kv-contact-intro h2{font-size:37px}}
+@media(max-width:480px){.kv-contact-container{width:calc(100% - 28px)}.kv-contact-form{padding:21px 17px}.kv-contact-form-grid{grid-template-columns:1fr}.kv-contact-intro h2{font-size:34px}}
