@@ -1,0 +1,152 @@
+/* Karunvaya Foundation • Premium Navy & Gold V1 • 05 Nov 2026 */
+/* Visual-only layer: preserves forms, endpoints, IDs and role permissions. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+:root{
+ --ink:#152641;--deep:#0f2342;--green:#b28a4d;--muted:#617085;--cream:#fbfaf7;
+ --white:#fff;--pale:#f4f1ea;--line:#e5e3dd;--gold:#c6a468;
+ --navy:#0f2342;--navy-2:#172f52;--ivory:#fbfaf7;--bronze:#ad874d;
+ --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+ --sans:'DM Sans',Inter,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif
+}
+html{scroll-padding-top:100px}
+body{background:#fbfaf7;color:#172841;font-family:var(--sans);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.serif,.section-title,.hero h1,.inner-hero h1,.knowledge-hero h1{letter-spacing:-.035em}
+h1,h2,.section-title,.serif,.giving-hero h1,.knowledge-hero h1{font-family:var(--serif)}
+h1{line-height:1.13}p{line-height:1.8}
+a,button,input,select,textarea{transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #ccac73;outline-offset:3px}
+::selection{background:#dfc792;color:#122844}
+.shell{max-width:1240px}
+.notice{background:#142945!important;color:#ead8b9!important;letter-spacing:.14em;border-bottom:1px solid rgba(255,255,255,.11)}
+.notice i{background:#d9bb7a!important}
+header,.kv-luxe-public header,.kv-professional-public header{background:rgba(253,251,247,.97)!important;border-bottom:1px solid #e5e1d7!important;box-shadow:0 7px 35px rgba(16,35,65,.045);backdrop-filter:blur(16px)}
+header .topbar{min-height:82px;gap:clamp(12px,2vw,26px)}
+header .brand{gap:10px;min-width:0}
+header .brand-logo{height:60px!important;width:60px!important;object-fit:contain!important;object-position:center;filter:none!important;border-radius:10px}
+header .brand::after{content:'KARUNVAYA\A FOUNDATION';white-space:pre;line-height:1.1;font:700 13px/1.18 var(--sans);letter-spacing:.11em;color:#132b4a;margin-left:2px}
+header .topbar nav a,.kv-menu a{color:#34465e!important;font:700 12px/1.35 var(--sans);letter-spacing:.015em;text-transform:none}
+header .topbar nav a:hover,.kv-menu a:hover{color:#af8343!important}
+header .header-cta,.header-cta,.footer-donate{background:#122a4a!important;border:1px solid #122a4a!important;color:#fff!important;border-radius:9px!important;letter-spacing:.045em;padding:14px 20px!important;box-shadow:0 8px 22px rgba(18,42,74,.13)}
+.header-cta:hover,.footer-donate:hover{background:#243e61!important;transform:translateY(-2px)}
+.menu-toggle{color:#152a48!important;border-color:#d8dbdc!important;border-radius:10px!important}
+.hero{background:radial-gradient(ellipse at 85% 5%,#f1e5ce 0,transparent 38%),linear-gradient(130deg,#fbfaf7 22%,#f5f1e8 100%)!important;padding-block:clamp(66px,8vw,122px)}
+.hero .eyebrow,.eyebrow,.knowledge-kicker,.giving-kicker{color:#ac874d!important;letter-spacing:.17em}
+.eyebrow:before{background:#c6a468!important}
+.hero h1{font:500 clamp(48px,5.7vw,88px)/1.13 var(--serif)!important;color:#102441!important;letter-spacing:-.04em}
+.hero h1 em,.serif em,.section-title em{color:#b18b53!important}
+.hero p,.section-intro,.prose p{color:#5c6d7f!important}
+.hero-under{color:#657589!important}
+.btn,.giving-button,.volunteer-submit,button.primary,.primary,.btn-dark,.btn-line{min-height:48px;border-radius:10px!important;font-family:var(--sans);font-weight:700;letter-spacing:.01em}
+.btn-dark,.volunteer-submit,.giving-button,button.primary,.primary{background:#142d4e!important;color:#fff!important;border:1px solid #142d4e!important;box-shadow:0 10px 24px rgba(18,45,78,.1)}
+.btn-dark:hover,.volunteer-submit:hover,.giving-button:hover,button.primary:hover{background:#23456b!important;transform:translateY(-2px)}
+.btn-line{border-color:#cabca6!important;color:#173051!important;background:#fffaf3!important}
+.btn-line:hover{background:#f3eadc!important}
+.textlink{color:#98723c!important;border-bottom-color:#c6a468!important}
+.strip{background:linear-gradient(100deg,#0e2241,#173657)!important}
+.strip span{color:#eee8d9!important}
+.strip span:before{color:#d7b675!important}
+section.block{padding-block:clamp(64px,7vw,106px)}
+.section-title{font:500 clamp(38px,4.4vw,64px)/1.2 var(--serif)!important;color:#132842!important}
+.work,.knowledge-section:nth-child(even){background:#f5f2eb!important}
+.about-side,.inline-callout,.knowledge-callout{background:linear-gradient(135deg,#f0eee8,#f7f2e8)!important;border:1px solid #e8dfce;border-radius:17px!important}
+.about-side p{color:#233651}
+.value-list div{color:#4d5c6d;border-color:#e4e2dc}
+.cards,.mini-cards,.knowledge-grid,.kv-gallery-grid{gap:clamp(16px,2.3vw,28px)}
+.card,.mini-card,.knowledge-card,.kv-gallery-item,.step,.stack-row{background:#fff!important;border:1px solid #e7e5de!important;border-radius:18px!important;box-shadow:0 14px 45px rgba(18,38,65,.052);overflow:hidden}
+.card,.mini-card,.knowledge-card,.kv-gallery-item{transition:transform .22s,box-shadow .22s,border-color .22s}
+.card:hover,.mini-card:hover,.knowledge-card:hover,.kv-gallery-item:hover{transform:translateY(-4px);box-shadow:0 19px 48px rgba(18,38,65,.105);border-color:#d5c1a0!important}
+.card-body{padding:clamp(22px,3vw,32px)}
+.card h3,.mini-card h3,.knowledge-card h3{color:#142a47!important;font-family:var(--serif);font-weight:600}
+.card .number,.mini-card .number,.kv-gallery-number{color:#af8c56!important}
+.kv-photo,.kv-photo-card,.kv-photo-hero{overflow:hidden;border-radius:17px}
+.kv-photo img,.kv-gallery-item img{width:100%;object-fit:cover}
+.kv-photo-hero{border-radius:180px 180px 18px 18px!important;box-shadow:0 25px 70px rgba(14,36,67,.15)}
+.kv-photo figcaption{font-size:10px;color:#66778c}
+.inner-hero,.knowledge-hero,.giving-hero{background:radial-gradient(circle at 90% 10%,#f0e1c9,transparent 36%),linear-gradient(125deg,#f7f6f1,#f0eee8)!important;border-bottom:1px solid #e6e1d8!important}
+.inner-hero h1,.knowledge-hero h1,.giving-hero h1{font:500 clamp(44px,5.3vw,76px)/1.17 var(--serif)!important;color:#112848!important}
+.inner-hero h1 em{color:#af8a54!important}
+.crumb,.knowledge-crumb{color:#778297!important}
+.stack-row .num{color:#be9b63!important}
+.kv-gallery-section{background:#fbfaf7!important}
+.kv-gallery-notice{color:#738197!important}
+.kv-footer{background:#0e2342!important;color:#edeef0!important;border-top:4px solid #c8a46b}
+.kv-footer h2,.kv-footer h3,.kv-footer h4{color:#fffaf0!important}
+.kv-footer a{color:#e2e8ee!important}
+.kv-footer a:hover{color:#f3c77f!important}
+.kv-footer p,.kv-footer small{color:#d1d9e4!important}
+.kv-footer-bottom{border-top:1px solid rgba(255,255,255,.19)!important}
+.kv-footer-logo{background:#fff8ed;border-radius:12px;padding:5px}
+.giving-section,.volunteer-application{background:#fbfaf7!important}
+.giving-panel,.giving-summary,.receipt-document,.volunteer-form{border:1px solid #e7e2d9!important;background:#fff!important;box-shadow:0 14px 55px rgba(18,38,65,.07);border-radius:19px!important}
+.giving-amounts button,.giving-amounts label{border-radius:11px!important}
+.giving-section label,.volunteer-form label{color:#33475e}
+.giving-section input,.giving-section select,.giving-section textarea,.volunteer-form input,.volunteer-form select,.volunteer-form textarea{background:#fff!important;border:1px solid #d7dfe4!important;border-radius:9px!important;color:#192e4a!important;min-height:45px}
+.giving-section input:focus,.volunteer-form input:focus,.volunteer-form textarea:focus{border-color:#b9975b!important;box-shadow:0 0 0 3px rgba(185,151,91,.16)}
+.receipt-heading,.receipt-footer{color:#18334f!important}
+.knowledge-hero .shell,.giving-hero .shell{position:relative}
+.policy-toc{border:1px solid #e4e0d7;border-radius:15px;background:#fff;box-shadow:0 8px 28px rgba(18,38,65,.045)}
+.policy-prose h2,.knowledge-section h2{color:#142b48!important}
+.kv-professional-live{background:#f5f2eb!important}
+.kv-pro-heading h2{color:#102844!important}
+.kv-pro-metric,.kv-pro-record,.kv-pro-integrity{background:#fff!important;border:1px solid #e6e0d7!important;border-radius:15px!important;box-shadow:0 10px 30px rgba(18,38,65,.045)}
+.kv-pro-number{color:#143252!important;font-family:var(--serif)!important}
+.kv-pro-status,.kv-pro-indicator{color:#9c7947!important}
+.kv-luxe-public .kv-luxe-main{background:#102644!important}
+.kv-luxe-kicker,.kv-luxe-eyebrow{color:#e4c68a!important}
+.kv-luxe-title{font-family:var(--serif)!important;letter-spacing:-.035em!important}
+.kv-luxe-cta{background:#d1ae70!important;color:#132c4c!important;border-radius:9px!important;box-shadow:0 8px 23px rgba(0,0,0,.13)}
+.kv-luxe-slide{border-radius:20px!important;overflow:hidden}
+.kv-luxe-arrow,.kv-luxe-dot{border-radius:12px!important}
+.kv-luxe-ribbon{letter-spacing:.08em}
+body:has(.auth-card){background:#f5f4f0!important}
+.auth-card,.auth-panel,.auth-form,.account-card,.login-card,.register-card{border-radius:19px!important;box-shadow:0 18px 55px rgba(13,36,68,.08)}
+.auth-card h1,.auth-card h2,.story h2,.account-data h2{font-family:var(--serif)!important;color:#152c4d}
+.story{background:linear-gradient(148deg,#0d2546,#1c4164)!important;color:#fff!important}
+.story h2,.story p{color:#fff!important}
+.story .story-bottom{color:#e7d2a5!important}
+.auth-card input,.auth-card select,.auth-card textarea,.account-card input{border-radius:10px!important;border-color:#d4dee7!important}
+.account-danger{border-color:#ecd1cd!important}
+.account-danger h2{color:#914f48!important}
+body:has(.account-data) .kv-footer,body:has(.auth-card) .kv-footer{margin-top:32px}
+body:has(.auth-card) .krf-festival,body:has(.account-data) .krf-festival,body:has(.admin-shell) .krf-festival{display:none!important}
+body:has(.auth-card) .kv-luxe-ribbon,body:has(.account-data) .kv-luxe-ribbon{display:none!important}
+body:has(.admin-shell),body:has(.admin-dashboard){background:#f6f7f9!important}
+.admin-shell,.admin-dashboard,.admin-card,.admin-panel,.admin-stats article,.admin-stats>div{border-radius:15px}
+.admin-card,.admin-panel{background:#fff;border:1px solid #e6e8ec;box-shadow:0 8px 25px rgba(18,38,65,.055)}
+.admin-shell h1,.admin-dashboard h1{color:#162f4e;font-family:var(--serif)}
+.admin-shell button,.admin-dashboard button{border-radius:9px}
+input,select,textarea{font-family:var(--sans)}
+@media(max-width:1160px){header .brand::after{font-size:11px;letter-spacing:.04em}header .topbar nav{gap:12px}.shell{width:min(calc(100% - 48px),1240px)}}
+@media(max-width:900px){
+ header .brand::after{font-size:11px;letter-spacing:.055em}
+ header .topbar{min-height:73px}
+ header .brand-logo{width:50px!important;height:50px!important}
+ header nav.open{background:#fffdf9!important;border:1px solid #e5dfd4!important;border-radius:13px!important;box-shadow:0 18px 42px rgba(15,34,64,.1)}
+ .hero{padding-block:70px!important}
+ .hero-grid{gap:30px}
+ .section-title{font-size:clamp(37px,6vw,53px)!important}
+}
+@media(max-width:640px){
+ .shell{width:calc(100% - 36px)}
+ header .topbar{gap:8px}
+ header .brand-logo{width:46px!important;height:46px!important}
+ header .brand::after{font-size:10px;letter-spacing:.03em;margin:0}
+ header .header-cta{font-size:10px!important;padding:10px 11px!important}
+ .hero{padding:54px 0 60px!important}
+ .hero h1{font-size:clamp(43px,10vw,61px)!important}
+ .hero p{font-size:15px;line-height:1.8}
+ .hero-grid{grid-template-columns:1fr!important}
+ .hero .actions{flex-direction:column;align-items:stretch}
+ .hero .actions .btn{width:100%;justify-content:center}
+ .hero .kv-photo-hero{border-radius:120px 120px 14px 14px!important}
+ .inner-hero h1,.giving-hero h1,.knowledge-hero h1{font-size:clamp(39px,9vw,55px)!important}
+ .section-title{font-size:clamp(34px,8vw,46px)!important}
+ .strip-inner,.cards,.mini-cards,.knowledge-grid,.giving-layout{grid-template-columns:1fr!important}
+ section.block{padding-block:60px}
+ .card-body{padding:22px}
+ .kv-pro-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .kv-footer-grid{grid-template-columns:1fr!important;gap:24px}
+ .giving-panel,.giving-summary{padding:20px!important}
+ .kv-luxe-title{font-size:clamp(30px,8vw,52px)!important}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
