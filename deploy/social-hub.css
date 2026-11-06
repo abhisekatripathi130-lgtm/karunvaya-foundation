@@ -1,0 +1,58 @@
+/* Karunvaya Foundation | social hub / verified-link-ready system */
+.kv-social{--sns-navy:#0d2444;--sns-gold:#d5b477;--sns-ivory:#fbf9f4;--sns-ink:#1b3452;--sns-muted:#586b81;font-family:"DM Sans",Inter,system-ui,sans-serif;color:var(--sns-ink)}
+.kv-social *, .kv-social *::before,.kv-social *::after{box-sizing:border-box}
+.kv-social-quick{padding:clamp(36px,5vw,64px) 0;background:#f5f1e8;border-top:1px solid #e6dbca}
+.kv-social-wrap{width:min(1200px,calc(100% - 40px));margin:0 auto}
+.kv-social-eyebrow{display:block;color:#9c753e;font-weight:750;letter-spacing:.16em;font-size:11px;text-transform:uppercase;margin:0 0 12px}
+.kv-social h1,.kv-social h2,.kv-social h3{color:#142a49;font-family:"Playfair Display",Georgia,serif;line-height:1.16;letter-spacing:-.025em}
+.kv-social-quick h2{font-size:clamp(30px,3.6vw,48px);margin:0 0 10px}
+.kv-social-quick p{max-width:650px;color:#58677a;line-height:1.75;margin:0 0 24px}
+.kv-social-links{display:flex;gap:11px;flex-wrap:wrap}
+.kv-social-links a{display:inline-flex;gap:9px;align-items:center;justify-content:center;background:#fff;border:1px solid #ddcfb9;color:#172d4b!important;border-radius:12px;padding:13px 16px;text-decoration:none!important;font-size:13px;font-weight:700;min-height:46px}
+.kv-social-links a:hover,.kv-social-links a:focus-visible{background:#122b4d;color:#fff!important;transform:translateY(-2px)}
+.kv-social-mark{display:inline-grid;place-items:center;background:#142f50;color:#f8e3bd;border:1px solid #d7b478;min-width:27px;height:27px;padding:0 4px;border-radius:7px;font-size:12px;font-weight:850}
+.kv-social-links a:hover .kv-social-mark{background:#d1ad71;color:#152a43}
+.kv-social-footer{max-width:1200px;margin:0 auto;border-bottom:1px solid rgba(216,185,129,.28);padding:22px 20px 28px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.kv-social-footer .kv-social-eyebrow{margin:0;color:#e4c58b}
+.kv-social-footer a{color:#fff4df!important;border:1px solid rgba(222,193,140,.45);border-radius:9px;padding:9px 13px;text-decoration:none!important;font:700 13px/1.4 "DM Sans",system-ui,sans-serif}
+.kv-social-footer a:hover{color:#122b4d!important;background:#edcf96}
+.kv-social-footer .kv-social-links{gap:8px}
+.kv-social-footer .kv-social-links a{background:transparent;color:#fff2d9!important;min-height:38px;padding:8px 11px;border-color:rgba(222,193,140,.38)}
+.kv-social-footer .kv-social-links a:hover{background:#e5bf83!important;color:#142843!important}
+.kv-social-hub{min-height:75vh;background:linear-gradient(145deg,#0c2140 0,#16365b 48%,#fbf9f5 48%);padding:38px 0 85px}
+.kv-social-hub .kv-social-wrap{width:min(1140px,calc(100% - 36px))}
+.kv-social-hub-nav{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:52px}
+.kv-social-hub-nav a{color:#f5ead6!important;text-decoration:none!important;font-weight:700;font-size:14px}
+.kv-social-hub-nav .kv-social-home{display:flex;gap:12px;align-items:center}
+.kv-social-hub-nav .kv-social-home img{width:54px;height:54px;object-fit:contain;border-radius:10px}
+.kv-social-hub-nav a:hover{text-decoration:underline!important}
+.kv-social-hub-intro{max-width:770px;margin-bottom:34px}
+.kv-social-hub-intro h1{font-size:clamp(39px,5vw,70px);color:#fff8e9!important;margin:0 0 18px}
+.kv-social-hub-intro h1 em{color:#dbb775}
+.kv-social-hub-intro p{font-size:16px;color:#e0e8f2;line-height:1.8;max-width:680px}
+.kv-social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:35px}
+.kv-social-card{background:#fffdf9;border:1px solid #e6dbc8;border-radius:19px;padding:clamp(22px,3vw,34px);box-shadow:0 14px 35px rgba(7,20,38,.12);scroll-margin-top:110px;min-width:0}
+.kv-social-cardtop{display:flex;align-items:center;gap:14px}
+.kv-social-card .kv-social-mark{width:54px;height:54px;border-radius:14px;font-size:18px;flex-shrink:0}
+.kv-social-card h2{font-size:28px;margin:0}
+.kv-social-card p{line-height:1.75;color:#596b7e;margin:19px 0 23px}
+.kv-social-status{display:inline-block;font:700 11px/1.45 "DM Sans",system-ui,sans-serif;letter-spacing:.045em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:#f4e9d9;color:#835d2d}
+.kv-social-status.live{background:#e8f4eb;color:#225c39}
+.kv-social-card-action{display:inline-flex;align-items:center;justify-content:center;min-height:43px;background:#102c4d;color:#fff!important;font-size:13px;font-weight:750;text-decoration:none!important;border-radius:10px;padding:12px 18px}
+.kv-social-card-action:hover{background:#23466b}
+.kv-social-card-action.pending{background:#f5f2ed;color:#505f72!important;border:1px solid #e5dbc9}
+.kv-social-note{background:#fff;max-width:1140px;margin:26px auto 0;padding:22px 25px;border:1px solid #e6d7c3;border-radius:13px;color:#455b73;line-height:1.75;font-size:14px}
+.kv-social-note a{color:#1d4f80!important;font-weight:700}
+.kv-social-hub-footer{text-align:center;color:#b7c9da;padding:27px 16px;background:#0b203c;font-size:13px}
+.kv-social-hub-footer a{color:#eac88a!important}
+@media(max-width:680px){
+ .kv-social-hub{padding-top:22px;background:linear-gradient(160deg,#0c2140 0,#16365b 37%,#fbf9f5 37%)}
+ .kv-social-grid{grid-template-columns:1fr}
+ .kv-social-hub-nav{margin-bottom:40px}
+ .kv-social-hub-intro h1{font-size:43px}
+ .kv-social-quick{padding:38px 0}
+ .kv-social-links a{flex:1 1 135px}
+ .kv-social-footer{flex-direction:column;align-items:flex-start}
+ .kv-social-footer .kv-social-links{width:100%}
+ .kv-social-footer .kv-social-links a{flex:1 1 130px}
+}
