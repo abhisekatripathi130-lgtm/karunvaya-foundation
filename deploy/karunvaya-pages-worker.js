@@ -189,9 +189,55 @@ async function kvContactAPI(request,env){
  return kvContactJson({error:"Method not allowed"},405);
 }
 
+
+/* KV_SOCIAL_HUB_SYSTEM_V1 */
+const kvSocialCss="/* Karunvaya Foundation | social hub / verified-link-ready system */\n.kv-social{--sns-navy:#0d2444;--sns-gold:#d5b477;--sns-ivory:#fbf9f4;--sns-ink:#1b3452;--sns-muted:#586b81;font-family:\"DM Sans\",Inter,system-ui,sans-serif;color:var(--sns-ink)}\n.kv-social *, .kv-social *::before,.kv-social *::after{box-sizing:border-box}\n.kv-social-quick{padding:clamp(36px,5vw,64px) 0;background:#f5f1e8;border-top:1px solid #e6dbca}\n.kv-social-wrap{width:min(1200px,calc(100% - 40px));margin:0 auto}\n.kv-social-eyebrow{display:block;color:#9c753e;font-weight:750;letter-spacing:.16em;font-size:11px;text-transform:uppercase;margin:0 0 12px}\n.kv-social h1,.kv-social h2,.kv-social h3{color:#142a49;font-family:\"Playfair Display\",Georgia,serif;line-height:1.16;letter-spacing:-.025em}\n.kv-social-quick h2{font-size:clamp(30px,3.6vw,48px);margin:0 0 10px}\n.kv-social-quick p{max-width:650px;color:#58677a;line-height:1.75;margin:0 0 24px}\n.kv-social-links{display:flex;gap:11px;flex-wrap:wrap}\n.kv-social-links a{display:inline-flex;gap:9px;align-items:center;justify-content:center;background:#fff;border:1px solid #ddcfb9;color:#172d4b!important;border-radius:12px;padding:13px 16px;text-decoration:none!important;font-size:13px;font-weight:700;min-height:46px}\n.kv-social-links a:hover,.kv-social-links a:focus-visible{background:#122b4d;color:#fff!important;transform:translateY(-2px)}\n.kv-social-mark{display:inline-grid;place-items:center;background:#142f50;color:#f8e3bd;border:1px solid #d7b478;min-width:27px;height:27px;padding:0 4px;border-radius:7px;font-size:12px;font-weight:850}\n.kv-social-links a:hover .kv-social-mark{background:#d1ad71;color:#152a43}\n.kv-social-footer{max-width:1200px;margin:0 auto;border-bottom:1px solid rgba(216,185,129,.28);padding:22px 20px 28px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}\n.kv-social-footer .kv-social-eyebrow{margin:0;color:#e4c58b}\n.kv-social-footer a{color:#fff4df!important;border:1px solid rgba(222,193,140,.45);border-radius:9px;padding:9px 13px;text-decoration:none!important;font:700 13px/1.4 \"DM Sans\",system-ui,sans-serif}\n.kv-social-footer a:hover{color:#122b4d!important;background:#edcf96}\n.kv-social-footer .kv-social-links{gap:8px}\n.kv-social-footer .kv-social-links a{background:transparent;color:#fff2d9!important;min-height:38px;padding:8px 11px;border-color:rgba(222,193,140,.38)}\n.kv-social-footer .kv-social-links a:hover{background:#e5bf83!important;color:#142843!important}\n.kv-social-hub{min-height:75vh;background:linear-gradient(145deg,#0c2140 0,#16365b 48%,#fbf9f5 48%);padding:38px 0 85px}\n.kv-social-hub .kv-social-wrap{width:min(1140px,calc(100% - 36px))}\n.kv-social-hub-nav{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:52px}\n.kv-social-hub-nav a{color:#f5ead6!important;text-decoration:none!important;font-weight:700;font-size:14px}\n.kv-social-hub-nav .kv-social-home{display:flex;gap:12px;align-items:center}\n.kv-social-hub-nav .kv-social-home img{width:54px;height:54px;object-fit:contain;border-radius:10px}\n.kv-social-hub-nav a:hover{text-decoration:underline!important}\n.kv-social-hub-intro{max-width:770px;margin-bottom:34px}\n.kv-social-hub-intro h1{font-size:clamp(39px,5vw,70px);color:#fff8e9!important;margin:0 0 18px}\n.kv-social-hub-intro h1 em{color:#dbb775}\n.kv-social-hub-intro p{font-size:16px;color:#e0e8f2;line-height:1.8;max-width:680px}\n.kv-social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:35px}\n.kv-social-card{background:#fffdf9;border:1px solid #e6dbc8;border-radius:19px;padding:clamp(22px,3vw,34px);box-shadow:0 14px 35px rgba(7,20,38,.12);scroll-margin-top:110px;min-width:0}\n.kv-social-cardtop{display:flex;align-items:center;gap:14px}\n.kv-social-card .kv-social-mark{width:54px;height:54px;border-radius:14px;font-size:18px;flex-shrink:0}\n.kv-social-card h2{font-size:28px;margin:0}\n.kv-social-card p{line-height:1.75;color:#596b7e;margin:19px 0 23px}\n.kv-social-status{display:inline-block;font:700 11px/1.45 \"DM Sans\",system-ui,sans-serif;letter-spacing:.045em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:#f4e9d9;color:#835d2d}\n.kv-social-status.live{background:#e8f4eb;color:#225c39}\n.kv-social-card-action{display:inline-flex;align-items:center;justify-content:center;min-height:43px;background:#102c4d;color:#fff!important;font-size:13px;font-weight:750;text-decoration:none!important;border-radius:10px;padding:12px 18px}\n.kv-social-card-action:hover{background:#23466b}\n.kv-social-card-action.pending{background:#f5f2ed;color:#505f72!important;border:1px solid #e5dbc9}\n.kv-social-note{background:#fff;max-width:1140px;margin:26px auto 0;padding:22px 25px;border:1px solid #e6d7c3;border-radius:13px;color:#455b73;line-height:1.75;font-size:14px}\n.kv-social-note a{color:#1d4f80!important;font-weight:700}\n.kv-social-hub-footer{text-align:center;color:#b7c9da;padding:27px 16px;background:#0b203c;font-size:13px}\n.kv-social-hub-footer a{color:#eac88a!important}\n@media(max-width:680px){\n .kv-social-hub{padding-top:22px;background:linear-gradient(160deg,#0c2140 0,#16365b 37%,#fbf9f5 37%)}\n .kv-social-grid{grid-template-columns:1fr}\n .kv-social-hub-nav{margin-bottom:40px}\n .kv-social-hub-intro h1{font-size:43px}\n .kv-social-quick{padding:38px 0}\n .kv-social-links a{flex:1 1 135px}\n .kv-social-footer{flex-direction:column;align-items:flex-start}\n .kv-social-footer .kv-social-links{width:100%}\n .kv-social-footer .kv-social-links a{flex:1 1 130px}\n}";
+const kvSocialTemplate="<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<meta name=\"theme-color\" content=\"#0d2444\">\n<meta name=\"description\" content=\"Connect with Karunvaya Foundation. Find verified contact channels and official social pages when available.\">\n<link rel=\"canonical\" href=\"https://karunvaya-foundation.pages.dev/social.html\">\n<link rel=\"stylesheet\" href=\"/__kv-social.css\">\n<title>Connect With Us | Karunvaya Foundation</title>\n</head><body style=\"margin:0\">\n<main class=\"kv-social kv-social-hub\">\n <div class=\"kv-social-wrap\">\n  <nav class=\"kv-social-hub-nav\" aria-label=\"Foundation navigation\">\n   <a class=\"kv-social-home\" href=\"/\"><img src=\"/assets/karunvaya-foundation-logo.jpg\" alt=\"\"><span>Karunvaya Foundation</span></a>\n   <a href=\"/contact.html\">Contact us</a>\n  </nav>\n  <header class=\"kv-social-hub-intro\"><span class=\"kv-social-eyebrow\">Official channels · Karunvaya Foundation</span>\n   <h1>Let's stay <em>connected.</em></h1>\n   <p>Our social presence will help supporters stay informed about education, social welfare and opportunities to get involved. We only share verified official account links.</p>\n  </header>\n  <div class=\"kv-social-grid\" id=\"social-platforms\"><!--SOCIAL_CARDS--></div>\n  <aside class=\"kv-social-note\">Official account URLs are published here only after they are created and verified. Until then, use our <a href=\"/contact.html\">contact page</a> to reach the Foundation. Social handles shown elsewhere should not be assumed official without a working verified link.</aside>\n </div>\n</main>\n<footer class=\"kv-social-hub-footer\">© 2026 Karunvaya Foundation · <a href=\"/\">Home</a> · <a href=\"/privacy.html\">Privacy</a></footer></body></html>";
+const kvSocialSpecs=[
+{id:"whatsapp",name:"WhatsApp Business",icon:"WA",env:"SOCIAL_WHATSAPP_URL",hosts:["wa.me","api.whatsapp.com","whatsapp.com"],desc:"For education and social welfare enquiries, volunteering and messages to the Foundation."},
+{id:"instagram",name:"Instagram",icon:"IG",env:"SOCIAL_INSTAGRAM_URL",hosts:["instagram.com","www.instagram.com"],desc:"Photos, stories and on-ground programme updates when our official account launches."},
+{id:"facebook",name:"Facebook",icon:"f",env:"SOCIAL_FACEBOOK_URL",hosts:["facebook.com","www.facebook.com","m.facebook.com"],desc:"Community announcements, activities and opportunities to support our programmes."},
+{id:"linkedin",name:"LinkedIn",icon:"in",env:"SOCIAL_LINKEDIN_URL",hosts:["linkedin.com","www.linkedin.com"],desc:"Foundation updates, volunteering, partnerships and organisational news."}
+];
+function kvSocialExternalUrl(env,account){
+ const raw=env[account.env];
+ if(typeof raw!=="string"||!raw.trim())return null;
+ try{
+  const u=new URL(raw.trim());
+  if(u.protocol!=="https:"||u.username||u.password||!account.hosts.includes(u.hostname.toLowerCase())||u.pathname==="/")return null;
+  return u.toString().replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+ }catch{return null;}
+}
+function kvSocialLinks(env){
+ return kvSocialSpecs.map(a=>{
+  const external=kvSocialExternalUrl(env,a);
+  const href=external||"/social.html#"+a.id;
+  const label=a.name+(external?"":" (link pending)");
+  return '<a href="'+href+'"'+(external?' target="_blank" rel="noopener noreferrer"':'')+' aria-label="'+label+'"><span class="kv-social-mark" aria-hidden="true">'+a.icon+'</span>'+a.name+'</a>';
+ }).join("");
+}
+function kvSocialCards(env){
+ return kvSocialSpecs.map(a=>{
+  const external=kvSocialExternalUrl(env,a);
+  return '<article class="kv-social-card" id="'+a.id+'"><div class="kv-social-cardtop"><span class="kv-social-mark" aria-hidden="true">'+a.icon+'</span><div><h2>'+a.name+'</h2><span class="kv-social-status'+(external?' live':'')+'">'+(external?'Official link connected':'Official page link pending')+'</span></div></div><p>'+a.desc+'</p>'+(external?'<a class="kv-social-card-action" href="'+external+'" target="_blank" rel="noopener noreferrer">Open official '+a.name+' ↗</a>':'<span class="kv-social-card-action pending">Link will appear after account verification</span>')+'</article>';
+ }).join("");
+}
+function kvSocialQuickSection(env){
+ const pending=kvSocialSpecs.some(a=>!kvSocialExternalUrl(env,a));
+ return '<section class="kv-social kv-social-quick" aria-labelledby="kv-social-quick-title"><div class="kv-social-wrap"><span class="kv-social-eyebrow">Connect with us</span><h2 id="kv-social-quick-title">Follow Karunvaya Foundation</h2><p>Explore our official communication channels and stay connected to education and social welfare initiatives. '+(pending?'Some social accounts are still being set up; only verified links open externally.':'Choose a platform to open our verified official account.')+'</p><div class="kv-social-links">'+kvSocialLinks(env)+'</div></div></section>';
+}
+function kvSocialFooterBar(env){
+ return '<div class="kv-social kv-social-footer" aria-label="Social media and WhatsApp links"><span class="kv-social-eyebrow">Connect with Karunvaya Foundation</span><div class="kv-social-links">'+kvSocialLinks(env)+'</div></div>';
+}
+function kvSocialHubPage(env){
+ return new Response(kvSocialTemplate.replace('<!--SOCIAL_CARDS-->',kvSocialCards(env)),{headers:{"content-type":"text/html; charset=utf-8","cache-control":"public, max-age=300","x-content-type-options":"nosniff"}});
+}
+
 export default {
  async fetch(request,env,ctx){
   const url=new URL(request.url);
+  if((url.pathname==="/social.html"||url.pathname==="/social")&&request.method==="GET")return kvSocialHubPage(env);
+  if(url.pathname==="/__kv-social.css")return new Response(kvSocialCss,{headers:{"content-type":"text/css; charset=utf-8","cache-control":"public, max-age=300","x-content-type-options":"nosniff"}});
   if(url.pathname==="/api/site/contact"||url.pathname.startsWith("/api/admin/enquiries"))return kvContactAPI(request,env);
   if(url.pathname==="/api/site/overview")return kvPublicOverview(request,env);
   if(url.pathname==="/api/pan/config"||url.pathname==="/api/pan/verify")return panApi(request,env);
@@ -228,8 +274,9 @@ export default {
    const contact=contactRoute?'<link rel="stylesheet" href="/__kv-contact.css?v=1"><script defer src="/__kv-contact.js?v=1"></script>':'';
    const admin=adminRoute?'<link rel="stylesheet" href="/__kv-admin-contact.css?v=1"><script defer src="/__kv-admin-contact.js?v=1"></script>':'';
    const premium='<link rel="stylesheet" href="/__kv-premium.css?v=2">';
+   const social=publicRoute?'<link rel="stylesheet" href="/__kv-social.css?v=1">':'';
    const canonical=publicRoute?'<link rel="canonical" href="https://karunvaya-foundation.pages.dev'+url.pathname.replace(/[^a-zA-Z0-9/_.-]/g,'')+'">':'';
-   el.append(existing+pan+festive+professional+contact+admin+premium+canonical,{html:true});
+   el.append(existing+pan+festive+professional+contact+admin+premium+social+canonical,{html:true});
   }})
   .on('a[href="/impact.html"]',{element(el){el.setAttribute("href","/about.html");}})
   .on('a[href="/transparency.html"]',{element(el){el.setAttribute("href","/privacy.html");}})
@@ -240,7 +287,9 @@ export default {
    if(homeRoute&&!luxeInserted){luxeInserted=true;el.prepend(festiveHtml,{html:true});}
    if(contactRoute&&!contactInserted){contactInserted=true;el.append(secureContactHtml,{html:true});}
    if(privacyRoute&&!privacyInserted){privacyInserted=true;el.append(contactPrivacyHtml,{html:true});}
+   if(publicRoute&&(homeRoute||contactRoute))el.append(kvSocialQuickSection(env),{html:true});
   }})
+  .on("footer",{element(el){if(publicRoute)el.prepend(kvSocialFooterBar(env),{html:true});}})
   .on("section.hero",{element(el){if(homeRoute&&!proInserted){proInserted=true;el.after(professionalHtml,{html:true});}}})
   .on("#giving-form fieldset, .donate-planner fieldset",{element(el){
    if(!donationRoute||panInserted)return;panInserted=true;el.after(panHtml,{html:true});
