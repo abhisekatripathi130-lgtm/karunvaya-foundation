@@ -321,7 +321,7 @@ async function krfIssueMember(env,userId,consentAt){
  if(!env.SITE_DB)throw new Error('Member database is unavailable');
  const db=env.SITE_DB;
  let rec=await db.prepare('SELECT serial,issued_year FROM kv_membership_ids WHERE user_id=?').bind(userId).first();
- if(!rec){const proposed=Number(String(consentAt||'').slice(0,4));const year=Number.isInteger(proposed)&&proposed>=2020&&proposed<=2100?proposed:new Date().getUTCFullYear();
+ if(!rec){const instant=new Date(consentAt||Date.now());const proposed=Number(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Kolkata',year:'numeric'}).format(Number.isNaN(instant.getTime())?new Date():instant));const year=Number.isInteger(proposed)&&proposed>=2020&&proposed<=2100?proposed:new Date().getUTCFullYear();
  await db.prepare('INSERT INTO kv_membership_ids(user_id,issued_year,created_at) VALUES (?,?,?) ON CONFLICT(user_id) DO NOTHING').bind(userId,year,String(consentAt||new Date().toISOString())).run();
  rec=await db.prepare('SELECT serial,issued_year FROM kv_membership_ids WHERE user_id=?').bind(userId).first();}
  if(!rec)throw new Error('Cannot assign Member ID');return krfFormatMember(rec);
