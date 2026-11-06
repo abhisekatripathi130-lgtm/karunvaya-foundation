@@ -231,6 +231,8 @@ export default {
    const canonical=publicRoute?'<link rel="canonical" href="https://karunvaya-foundation.pages.dev'+url.pathname.replace(/[^a-zA-Z0-9/_.-]/g,'')+'">':'';
    el.append(existing+pan+festive+professional+contact+admin+premium+canonical,{html:true});
   }})
+  .on('a[href="/impact.html"]',{element(el){el.setAttribute("href","/about.html");}})
+  .on('a[href="/transparency.html"]',{element(el){el.setAttribute("href","/privacy.html");}})
   .on("#krf-festival-style",{element(el){if(publicRoute)el.remove();}})
   .on(".krf-festival",{element(el){if(publicRoute)el.remove();}})
   .on(".notice",{element(el){if(publicRoute&&!ribbonInserted){ribbonInserted=true;el.replace(seasonalBar,{html:true});}}})
