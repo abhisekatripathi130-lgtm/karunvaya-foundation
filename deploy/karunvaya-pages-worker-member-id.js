@@ -373,7 +373,10 @@ export default {async fetch(request,env,ctx){
  if(request.method!=='GET'||!response.ok)return response;
  if(path==='/admin-dashboard.js'&&(response.headers.get('content-type')||'').includes('javascript')){
   const original=await response.text();const find="active==='users'?['name','email','phone','organisation','consent_at']";
-  const revised=original.includes(find)?original.replace(find,"active==='users'?['account_id','name','email','phone','organisation','consent_at']"):original;
+  const updatedColumns=original.includes(find)?original.replace(find,"active==='users'?['account_id','name','email','phone','organisation','consent_at']"):original;
+  const detailsBefore="for(const [k,v] of Object.entries(row))$('detail-fields').append(node('dt',k.replaceAll('_',' ')),node('dd',v))";
+  const detailsAfter="for(const [k,v] of Object.entries(row)){if(active==='users'&&k==='id')continue;$('detail-fields').append(node('dt',k==='account_id'?'Member ID':k.replaceAll('_',' ')),node('dd',v))}";
+  const revised=updatedColumns.includes(detailsBefore)?updatedColumns.replace(detailsBefore,detailsAfter):updatedColumns;
   const headers=new Headers(response.headers);headers.delete('content-length');headers.set('cache-control','no-cache');return new Response(revised,{status:response.status,headers});
  }
  if(path==='/account.html'&&(response.headers.get('content-type')||'').includes('text/html'))
