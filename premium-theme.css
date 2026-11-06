@@ -150,3 +150,41 @@ input,select,textarea{font-family:var(--sans)}
  .kv-luxe-title{font-size:clamp(30px,8vw,52px)!important}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* Karunvaya Foundation · Navy-first live design alignment · 2026-11-06 */
+/* A single, recognisable foundation identity. No sample claims or impact figures. */
+body:not(:has(.admin-shell)):not(:has(.admin-dashboard)) header,
+body.kv-luxe-public header,
+body.kv-professional-public header {
+  background:#0e2342!important;
+  border-bottom:1px solid rgba(210,180,124,.35)!important;
+  box-shadow:0 7px 22px rgba(9,24,47,.15)!important;
+}
+header .brand::after {color:#fff9ec!important;font-family:var(--serif)!important;font-size:clamp(12px,1.2vw,16px)!important;letter-spacing:.025em!important;line-height:1.13!important}
+header .topbar nav a, body.kv-luxe-public header .topbar nav a,
+body.kv-professional-public header .topbar nav a {color:#f6f2e9!important;font-weight:600!important}
+header .topbar nav a:hover, body.kv-luxe-public header .topbar nav a:hover {color:#e3bc79!important}
+header .header-cta, body.kv-luxe-public header .header-cta,
+body.kv-professional-public header .header-cta {background:#d5ad69!important;color:#112746!important;border-color:#d5ad69!important;box-shadow:none!important}
+header .header-cta:hover {background:#ebca90!important;color:#102441!important}
+header .menu-toggle {color:#f8e4bd!important;border-color:#af8f5f!important}
+header nav.open,body.kv-luxe-public header nav.open {background:#fffdf9!important;border-color:#e6dccd!important}
+header .topbar nav.open a,body.kv-luxe-public header .topbar nav.open a {color:#173251!important}
+header .topbar nav.open a:hover {color:#a47835!important}
+body.kv-luxe-public:has(#kv-luxe-carousel) section.hero {display:none!important}
+body.kv-luxe-public .kv-luxe-main {background:linear-gradient(145deg,#0b1d37,#122e51)!important;padding-top:clamp(38px,5vw,76px)}
+body.kv-luxe-public .kv-luxe-heading,body.kv-luxe-public .kv-luxe-title {color:#fff6e6!important}
+body.kv-luxe-public .kv-luxe-title em,body.kv-luxe-public .kv-luxe-heading em {color:#ddb775!important}
+body.kv-luxe-public .kv-luxe-micro {border-color:rgba(226,192,135,.25)!important}
+body.kv-luxe-public .kv-luxe-ribbon {background:#102743!important;color:#efdfbf!important}
+body.kv-luxe-public .kv-luxe-footer {border-top-color:rgba(226,192,135,.24)!important}
+body.kv-luxe-public .kv-luxe-slide--festival {background:linear-gradient(122deg,#132f52,#213e65)!important}
+body.kv-luxe-public .kv-luxe-cta {background:#d6ad68!important;color:#122644!important}
+.foot {background:#0e2342!important;color:#e2e6ee!important}
+.foot a,.foot p,.foot small {color:#e5eaf3!important}
+.foot a:hover {color:#efc780!important}
+@media(max-width:760px){
+ header .topbar nav.open a,body.kv-professional-public header nav.open a {color:#183451!important}
+ body.kv-luxe-public .kv-luxe-main {padding-top:30px}
+ header .brand::after {font-size:12px!important}
+}
